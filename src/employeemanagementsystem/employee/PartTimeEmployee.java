@@ -27,7 +27,7 @@ public class PartTimeEmployee extends EmployeeInfo {
 
     // CONSTRUCTORS
 
-    public PartTimeEmployee(int empNum, String firstName, String lastName, int sex, String workLoc, double deductRate, double hourlyWage, double hoursPerWeek, double weeksPerYear)
+    public PartTimeEmployee(int empNum, String firstName, String lastName, String sex, String workLoc, double deductRate, double hourlyWage, double hoursPerWeek, double weeksPerYear)
     {
         super(empNum, firstName, lastName, sex, workLoc, deductRate);
         this.hourlyWage = hourlyWage;

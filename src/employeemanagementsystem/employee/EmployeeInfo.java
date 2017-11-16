@@ -28,13 +28,13 @@ public class EmployeeInfo {
     private int empNum;
     private String firstName;
     private String lastName;
-    private int sex; // encode e.g. 0 for M, 1 for F, etc.
-    private String workLoc; // encode e.g. 0 for Mississauga, etc.
+    private String sex;
+    private String workLoc;
     private double deductRate; // e.g. 0.21 for 21%
 
     // CONSTRUCTORS
 
-    public EmployeeInfo(int empNum, String firstName, String lastName, int sex, String workLoc, double deductRate)
+    public EmployeeInfo(int empNum, String firstName, String lastName, String sex, String workLoc, double deductRate)
     {
         this.empNum = empNum;
         this.firstName = firstName;
@@ -56,9 +56,13 @@ public class EmployeeInfo {
     {
         return 0;
     }
+    public double getAnnualDeduction() 
+    {
+        return getAnnualGrossIncome() * deductRate;
+    }
     public double getAnnualNetIncome()
     {
-        return getAnnualGrossIncome() * (1 - deductRate);
+        return getAnnualGrossIncome() - getAnnualDeduction();
     }
 
 
@@ -92,12 +96,12 @@ public class EmployeeInfo {
         this.lastName = lastName;
     }
 
-    public int getSex()
+    public String getSex()
     {
         return sex;
     }
 
-    public void setSex(int sex)
+    public void setSex(String sex)
     {
         this.sex = sex;
     }

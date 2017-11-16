@@ -11,8 +11,4 @@ package employeemanagementsystem;
  */
 public class InterfaceIO {
     
-    
-    
-    
-    
 }

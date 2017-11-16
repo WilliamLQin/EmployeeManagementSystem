@@ -25,7 +25,7 @@ public class FullTimeEmployee extends EmployeeInfo {
 
     // CONSTRUCTORS
 
-    public FullTimeEmployee(int empNum, String firstName, String lastName, int sex, String workLoc, double deductRate, double yearlySalary)
+    public FullTimeEmployee(int empNum, String firstName, String lastName, String sex, String workLoc, double deductRate, double yearlySalary)
     {
         super(empNum, firstName, lastName, sex, workLoc, deductRate);
         this.yearlySalary = yearlySalary;
