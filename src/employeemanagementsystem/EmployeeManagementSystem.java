@@ -18,7 +18,7 @@ public class EmployeeManagementSystem {
     
     // ATTRIBUTES
     
-    private MainInterface mMainInterface;
+    private MainView mMainInterface;
     
     private HashTableEmployeeInfo mDatabase;
     private EmployeeInfo mActiveEmployee;
@@ -32,7 +32,7 @@ public class EmployeeManagementSystem {
     public void main(String[] args) {
         // TODO code application logic here
         
-        mMainInterface = new MainInterface();
+        mMainInterface = new MainView();
         mMainInterface.setVisible(true);
         mMainInterface.setResizable(false);
         
@@ -45,16 +45,6 @@ public class EmployeeManagementSystem {
     }
     
     public void getFieldInfo() {
-        
-        String empNumInput = mMainInterface.getFieldEmpNum();
-        int empNum = 0;
-        String firstName = mMainInterface.getFieldFirstName();
-        String lastName = mMainInterface.getFieldLastName();
-        String sex = mMainInterface.getFieldSex();
-        String workLoc = mMainInterface.getFieldWorkLocation();
-        String deductRateInput = mMainInterface.getFieldDeductRate();
-        
-        String type = mMainInterface.getFieldEmploymentType();
         
         
         
