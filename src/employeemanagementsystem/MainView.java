@@ -35,6 +35,9 @@ public class MainView extends javax.swing.JFrame {
         buttonAdd = new javax.swing.JButton();
         labelPrompt = new javax.swing.JLabel();
         fieldSearch = new javax.swing.JTextField();
+        buttonNew = new javax.swing.JButton();
+        buttonOpen = new javax.swing.JButton();
+        buttonSave = new javax.swing.JButton();
         panelViewEmp = new javax.swing.JPanel();
         labelViewTitle = new javax.swing.JLabel();
         panelEmp = new javax.swing.JPanel();
@@ -70,10 +73,10 @@ public class MainView extends javax.swing.JFrame {
         buttonRemove = new javax.swing.JButton();
         panelDatabase = new javax.swing.JPanel();
         labelViewTitle1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        scrollPanelEmployees = new javax.swing.JScrollPane();
+        listEmployees = new javax.swing.JList<>();
+        labelSearch = new javax.swing.JLabel();
+        labelVarSearch = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,19 +95,34 @@ public class MainView extends javax.swing.JFrame {
 
         labelPrompt.setText("Welcome!");
 
+        buttonNew.setText("New");
+        buttonNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonNewActionPerformed(evt);
+            }
+        });
+
+        buttonOpen.setText("Open");
+
+        buttonSave.setText("Save");
+
         javax.swing.GroupLayout panelMainLayout = new javax.swing.GroupLayout(panelMain);
         panelMain.setLayout(panelMainLayout);
         panelMainLayout.setHorizontalGroup(
             panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelMainLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
                 .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelMainLayout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(labelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelMainLayout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(labelPrompt, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonNew)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonOpen)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonSave)
+                        .addGap(18, 18, 18)
+                        .addComponent(labelPrompt, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(28, 28, 28)
                 .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMainLayout.createSequentialGroup()
                         .addComponent(fieldSearch)
@@ -115,21 +133,26 @@ public class MainView extends javax.swing.JFrame {
         );
         panelMainLayout.setVerticalGroup(
             panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelMainLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMainLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMainLayout.createSequentialGroup()
+                        .addComponent(labelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(buttonNew)
+                            .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(buttonOpen)
+                                .addComponent(buttonSave)
+                                .addComponent(labelPrompt)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMainLayout.createSequentialGroup()
                         .addComponent(buttonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(buttonSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
                             .addComponent(fieldSearch))
-                        .addGap(17, 17, 17))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMainLayout.createSequentialGroup()
-                        .addComponent(labelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(labelPrompt)
-                        .addGap(27, 27, 27))))
+                        .addGap(17, 17, 17))))
         );
 
         panelViewEmp.setEnabled(false);
@@ -372,7 +395,7 @@ public class MainView extends javax.swing.JFrame {
                     .addGroup(panelViewEmpLayout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(panelEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelViewEmpLayout.setVerticalGroup(
             panelViewEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -392,16 +415,16 @@ public class MainView extends javax.swing.JFrame {
         labelViewTitle1.setText("View Database");
         labelViewTitle1.setToolTipText("");
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        listEmployees.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        scrollPanelEmployees.setViewportView(listEmployees);
 
-        jLabel1.setText("Searched Term:");
+        labelSearch.setText("Searched Term:");
 
-        jLabel2.setText("asdf");
+        labelVarSearch.setText("asdf");
 
         javax.swing.GroupLayout panelDatabaseLayout = new javax.swing.GroupLayout(panelDatabase);
         panelDatabase.setLayout(panelDatabaseLayout);
@@ -414,12 +437,12 @@ public class MainView extends javax.swing.JFrame {
                         .addComponent(labelViewTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelDatabaseLayout.createSequentialGroup()
                         .addGap(45, 45, 45)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(labelVarSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelDatabaseLayout.createSequentialGroup()
                         .addGap(37, 37, 37)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(scrollPanelEmployees, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
         panelDatabaseLayout.setVerticalGroup(
@@ -429,11 +452,11 @@ public class MainView extends javax.swing.JFrame {
                 .addComponent(labelViewTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(panelDatabaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                    .addComponent(labelSearch)
+                    .addComponent(labelVarSearch))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(177, Short.MAX_VALUE))
+                .addComponent(scrollPanelEmployees, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -459,7 +482,7 @@ public class MainView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(panelViewEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelDatabase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
@@ -471,6 +494,12 @@ public class MainView extends javax.swing.JFrame {
         InterfaceIO.getInstance().beginFormAddEmployee();
         
     }//GEN-LAST:event_buttonAddActionPerformed
+
+    private void buttonNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNewActionPerformed
+        // TODO add your handling code here:
+        
+        InterfaceIO.getInstance().reloadView();
+    }//GEN-LAST:event_buttonNewActionPerformed
 
     /**
      * @param args the command line arguments
@@ -511,13 +540,12 @@ public class MainView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAdd;
     private javax.swing.JButton buttonEdit;
+    private javax.swing.JButton buttonNew;
+    private javax.swing.JButton buttonOpen;
     private javax.swing.JButton buttonRemove;
+    private javax.swing.JButton buttonSave;
     private javax.swing.JButton buttonSearch;
     private javax.swing.JTextField fieldSearch;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelDeductRate;
     private javax.swing.JLabel labelDeduction;
     private javax.swing.JLabel labelEmpNum;
@@ -530,6 +558,7 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JLabel labelNetIncome;
     private javax.swing.JLabel labelPayrollSubtitle;
     private javax.swing.JLabel labelPrompt;
+    private javax.swing.JLabel labelSearch;
     private javax.swing.JLabel labelSex;
     private javax.swing.JLabel labelTitle;
     private javax.swing.JLabel labelType;
@@ -542,6 +571,7 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JLabel labelVarIncome;
     private javax.swing.JLabel labelVarLastName;
     private javax.swing.JLabel labelVarNetIncome;
+    private javax.swing.JLabel labelVarSearch;
     private javax.swing.JLabel labelVarSex;
     private javax.swing.JLabel labelVarType;
     private javax.swing.JLabel labelVarWeeksPerYear;
@@ -550,9 +580,11 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JLabel labelViewTitle1;
     private javax.swing.JLabel labelWeeksPerYear;
     private javax.swing.JLabel labelWorkLocation;
+    private javax.swing.JList<String> listEmployees;
     private javax.swing.JPanel panelDatabase;
     private javax.swing.JPanel panelEmp;
     private javax.swing.JPanel panelMain;
     private javax.swing.JPanel panelViewEmp;
+    private javax.swing.JScrollPane scrollPanelEmployees;
     // End of variables declaration//GEN-END:variables
 }

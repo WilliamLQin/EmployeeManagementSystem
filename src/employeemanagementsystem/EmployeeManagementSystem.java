@@ -9,6 +9,8 @@ import employeemanagementsystem.employee.EmployeeInfo;
 import employeemanagementsystem.employee.FullTimeEmployee;
 import employeemanagementsystem.employee.PartTimeEmployee;
 import employeemanagementsystem.employee.HashTableEmployeeInfo;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,7 +20,7 @@ public class EmployeeManagementSystem {
     
     // ATTRIBUTES
     
-    private MainView mMainInterface;
+    private MainView mMainView;
     
     private HashTableEmployeeInfo mDatabase;
     private EmployeeInfo mActiveEmployee;
@@ -27,35 +29,39 @@ public class EmployeeManagementSystem {
     // METHODS
 
     /**
-     * @param args the command line arguments
+     * @param argv the command line arguments
      */
-    public void main(String[] args) {
+    public static void main(String[] argv) {
         // TODO code application logic here
         
-        mMainInterface = new MainView();
-        mMainInterface.setVisible(true);
-        mMainInterface.setResizable(false);
+        EmployeeManagementSystem manager = new EmployeeManagementSystem();
+        
+        InterfaceIO.getInstance().setManager(manager);
+        InterfaceIO.getInstance().loadView();
         
     }
     
-    public void loadDatabase() {
+    public EmployeeManagementSystem() {
         
         mDatabase = new HashTableEmployeeInfo(10);
         
     }
     
-    public void getFieldInfo() {
+    private boolean addEmployee(String numField, String firstName, String lastName, String sex, String workLoc, String deductRateField, String type) {
+        int num = 0;
+        double deductRate = 0;
+        
+        try {
+            num = Integer.parseInt(numField);
+            deductRate = Double.parseDouble(deductRateField);
+        } catch(NumberFormatException e) {
+            e.printStackTrace();
+            return false;
+        }
         
         
         
-        
-    }
-    
-    
-    
-    public void addEmployee(String numField, String firstName, String lastName, String sex, String workLoc, String deductRateField) {
-        
-        
+        return true;
         
     }
     

@@ -123,6 +123,11 @@ public class AddEmployeeForm extends javax.swing.JFrame {
         labelDollarSign.setText("$");
 
         buttonCancel.setText("Cancel");
+        buttonCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCancelActionPerformed(evt);
+            }
+        });
 
         buttonAdd.setText("Add");
 
@@ -283,6 +288,13 @@ public class AddEmployeeForm extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_buttonTypeActionPerformed
+
+    private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
+        // TODO add your handling code here:
+        
+        InterfaceIO.getInstance().cancelFormAddEmployee();
+        
+    }//GEN-LAST:event_buttonCancelActionPerformed
 
     /**
      * @param args the command line arguments

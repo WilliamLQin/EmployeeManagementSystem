@@ -14,33 +14,101 @@ import javax.swing.JOptionPane;
  */
 public class InterfaceIO {
     
+    // Necessary to make InterfaceIO as a Singleton
+    
     private static InterfaceIO instance;
     
     public static InterfaceIO getInstance() {
         return instance == null ? instance = new InterfaceIO() : instance;
     }
     
-    private EmployeeManagementSystem mManager;
+    // ATTRIBUTES
     
+    private EmployeeManagementSystem mManager;
+    private AddEmployeeForm mAddForm;
+    private MainView mMainView;
+    
+    
+    // METHODS
+    
+    public void setManager(EmployeeManagementSystem manager) {
+        System.out.println(manager);
+        mManager = manager;
+    }
     
     public void beginFormAddEmployee() {
         
-        AddEmployeeForm add = new AddEmployeeForm();
-        add.setVisible(true);
-        add.setResizable(false);
-        add.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        add.addWindowListener(new java.awt.event.WindowAdapter() {
+        mAddForm = new AddEmployeeForm();
+        mAddForm.setVisible(true);
+        mAddForm.setAlwaysOnTop(true);
+        mAddForm.setResizable(false);
+        mAddForm.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        mAddForm.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                if (JOptionPane.showConfirmDialog(add, 
-                    "Are you sure to close this window?", "Really Closing?", 
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
-                    add.dispose();
-                }
+                closeFormAddEmployee();
             }
         });
         
+        mMainView.setEnabled(false);
+        mMainView.setFocusable(false);
+        
+    }
+    
+    private void closeFormAddEmployee() {
+        if (JOptionPane.showConfirmDialog(mAddForm, 
+            "Are you sure to close this window?", "Really Closing?", 
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+            mAddForm.dispose();
+            mMainView.setEnabled(true);
+            mMainView.setFocusable(true);
+        }
+    }
+    
+    public void cancelFormAddEmployee() {
+        closeFormAddEmployee();
+    }
+    
+    public void addFormAddEmployee() {
+        // TODO: get info from form and add employee
+        
+        
+    }
+    
+    public void reloadView() {
+        
+        if (JOptionPane.showConfirmDialog(mMainView, 
+            "Close current window and open new window?", "Create new?", 
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+            
+            mMainView.dispose();
+            
+            loadView();
+        }
+        
+        
+    }
+    
+    public void loadView() {
+        mMainView = new MainView();
+        mMainView.setVisible(true);
+        mMainView.setResizable(false);
+        mMainView.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        mMainView.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                if (JOptionPane.showConfirmDialog(mMainView, 
+                    "Exit Employee Management System?", "Close?", 
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+                    
+                    System.exit(0);
+                    
+                }
+            }
+        });
     }
     
     
