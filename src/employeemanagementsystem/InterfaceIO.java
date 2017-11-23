@@ -5,6 +5,8 @@
  */
 package employeemanagementsystem;
 
+import employeemanagementsystem.employee.EmployeeInfo;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -46,7 +48,7 @@ public class InterfaceIO {
         mAddForm.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                closeFormAddEmployee();
+                confirmCloseFormAddEmployee();
             }
         });
         
@@ -55,23 +57,91 @@ public class InterfaceIO {
         
     }
     
-    private void closeFormAddEmployee() {
+    private void confirmCloseFormAddEmployee() {
         if (JOptionPane.showConfirmDialog(mAddForm, 
             "Are you sure to close this window?", "Really Closing?", 
             JOptionPane.YES_NO_OPTION,
             JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
-            mAddForm.dispose();
-            mMainView.setEnabled(true);
-            mMainView.setFocusable(true);
+            closeFormAddEmployee();
         }
     }
     
+    private void closeFormAddEmployee() {
+        mAddForm.dispose();
+        mMainView.setEnabled(true);
+        mMainView.setFocusable(true);
+    }
+    
     public void cancelFormAddEmployee() {
-        closeFormAddEmployee();
+        confirmCloseFormAddEmployee();
     }
     
     public void addFormAddEmployee() {
         // TODO: get info from form and add employee
+        
+        String numField = mAddForm.getFieldEmpNum();
+        String firstName = mAddForm.getFieldFirstName();
+        String lastName = mAddForm.getFieldLastName();
+        String sex = mAddForm.getFieldSex();
+        String workLoc = mAddForm.getFieldWorkLocation();
+        String deductRateField = mAddForm.getFieldDeductRate();
+        String type = mAddForm.getFieldEmploymentType();
+        
+        String incomeField = mAddForm.getFieldIncome();
+        String hoursPerWeekField = mAddForm.getFieldHoursPerWeek();
+        String weeksPerYearField = mAddForm.getFieldWeeksPerYear();
+        
+        int empNum = 0;
+        double deductRate = 0;
+        double income = 0;
+        int hoursPerWeek = 0;
+        int weeksPerYear = 0;
+        
+        try {
+            empNum = Integer.parseInt(numField);
+            deductRate = Double.parseDouble(deductRateField);
+            
+            income = Double.parseDouble(incomeField);
+            
+            if (!type.equals("FT")) {
+                hoursPerWeek = Integer.parseInt(hoursPerWeekField);
+                weeksPerYear = Integer.parseInt(weeksPerYearField);
+            }
+        } catch(NumberFormatException e) {
+            e.printStackTrace();
+            String dialogAppend = ", Hourly Wage, Hours Per Week, and Weeks Per Year";
+            if (type.equals("FT")) {
+                dialogAppend = ", and Annual Salary";
+            }
+            
+            JOptionPane.showConfirmDialog(mAddForm, 
+                "Please ensure that the Employee Number, Deduct Rate" + dialogAppend, "Number Format Error!", 
+                JOptionPane.OK_OPTION,
+                JOptionPane.ERROR_MESSAGE);
+        }
+        
+        boolean success = false;
+        
+        if (type.equals("FT")) {
+            
+            success = mManager.addEmployee(empNum, firstName, lastName, sex, workLoc, deductRate, income);
+            
+        }
+        else { 
+            
+            success = mManager.addEmployee(empNum, firstName, lastName, sex, workLoc, deductRate, income, hoursPerWeek, weeksPerYear);
+            
+        }
+        
+        if (!success) {
+            JOptionPane.showConfirmDialog(mAddForm, 
+                "Employee with employee number already exists!", "Employee exists!", 
+                JOptionPane.OK_OPTION,
+                JOptionPane.ERROR_MESSAGE);
+        }
+        else {
+            
+        }
         
         
     }
@@ -111,6 +181,13 @@ public class InterfaceIO {
         });
     }
     
+    
+    public void populateTable(ArrayList<EmployeeInfo> employees) {
+        
+        
+        
+        
+    }
     
     
 }

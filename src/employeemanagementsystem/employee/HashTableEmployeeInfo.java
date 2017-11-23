@@ -5,6 +5,7 @@
  */
 package employeemanagementsystem.employee;
 
+import java.awt.List;
 import java.util.ArrayList;
 
 /**
@@ -81,6 +82,10 @@ public class HashTableEmployeeInfo {
         // return false otherwise.
 
         int key = theEmployee.getEmpNum();
+        
+        if (findEmployeeIndex(theEmployee.getEmpNum()) != -1) {
+            return false; // Do not allow two employees with the same employee number.
+        }
 
         return buckets[calcBucket(key)].add(theEmployee);
     }
@@ -137,6 +142,26 @@ public class HashTableEmployeeInfo {
         if (index != -1)
             return bucket.get(index);
         return null;
+        
+    }
+    
+    public ArrayList<EmployeeInfo> getAllEmployees() {
+        
+        ArrayList<EmployeeInfo> all = new ArrayList<EmployeeInfo>();
+        
+        for (int i = 0; i < buckets.length; i++) {
+
+            // For the current bucket, print out the emp num for each item in its ArrayList.
+
+            int listSize = buckets[i].size();
+
+            for (int j = 0; j < listSize; j++) {
+                all.add(buckets[i].get(j));
+            }
+
+        }
+        
+        return all;
         
     }
     

@@ -47,23 +47,18 @@ public class EmployeeManagementSystem {
         
     }
     
-    private boolean addEmployee(String numField, String firstName, String lastName, String sex, String workLoc, String deductRateField, String type) {
-        int num = 0;
-        double deductRate = 0;
+    public boolean addEmployee(int empNum, String firstName, String lastName, String sex, String workLoc, double deductRate, double annualSalary) {
         
-        try {
-            num = Integer.parseInt(numField);
-            deductRate = Double.parseDouble(deductRateField);
-        } catch(NumberFormatException e) {
-            e.printStackTrace();
-            return false;
-        }
-        
-        
-        
-        return true;
+        return mDatabase.addEmployee(new FullTimeEmployee(empNum, firstName, lastName, sex, workLoc, deductRate, annualSalary));
         
     }
+    
+    public boolean addEmployee(int empNum, String firstName, String lastName, String sex, String workLoc, double deductRate, double hourlyWage, int hoursPerWeek, int weeksPerYear) {
+        
+        return mDatabase.addEmployee(new PartTimeEmployee(empNum, firstName, lastName, sex, workLoc, deductRate, hourlyWage, hoursPerWeek, weeksPerYear));
+        
+    }
+    
     
     
     

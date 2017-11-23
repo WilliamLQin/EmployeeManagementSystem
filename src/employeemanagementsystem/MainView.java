@@ -73,10 +73,10 @@ public class MainView extends javax.swing.JFrame {
         buttonRemove = new javax.swing.JButton();
         panelDatabase = new javax.swing.JPanel();
         labelViewTitle1 = new javax.swing.JLabel();
-        scrollPanelEmployees = new javax.swing.JScrollPane();
-        listEmployees = new javax.swing.JList<>();
         labelSearch = new javax.swing.JLabel();
         labelVarSearch = new javax.swing.JLabel();
+        scrollPaneDatabase = new javax.swing.JScrollPane();
+        tableDatabase = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -347,9 +347,9 @@ public class MainView extends javax.swing.JFrame {
                     .addComponent(labelDeductRate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(labelVarDeductRate))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelIncome)
-                    .addComponent(labelVarIncome))
+                .addGroup(panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelVarIncome)
+                    .addComponent(labelIncome))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelHoursPerWeek)
@@ -383,14 +383,13 @@ public class MainView extends javax.swing.JFrame {
             panelViewEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelViewEmpLayout.createSequentialGroup()
                 .addGroup(panelViewEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelViewEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(panelViewEmpLayout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(buttonRemove)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(buttonEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(panelViewEmpLayout.createSequentialGroup()
-                            .addGap(30, 30, 30)
+                    .addGroup(panelViewEmpLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(panelViewEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(panelViewEmpLayout.createSequentialGroup()
+                                .addComponent(buttonRemove)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buttonEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(labelViewTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelViewEmpLayout.createSequentialGroup()
                         .addGap(22, 22, 22)
@@ -415,16 +414,19 @@ public class MainView extends javax.swing.JFrame {
         labelViewTitle1.setText("View Database");
         labelViewTitle1.setToolTipText("");
 
-        listEmployees.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        scrollPanelEmployees.setViewportView(listEmployees);
-
         labelSearch.setText("Searched Term:");
 
         labelVarSearch.setText("asdf");
+
+        tableDatabase.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Emp. Number", "First Name", "Last Name", "Sex", "Work Location", "Deduction Rate"
+            }
+        ));
+        scrollPaneDatabase.setViewportView(tableDatabase);
 
         javax.swing.GroupLayout panelDatabaseLayout = new javax.swing.GroupLayout(panelDatabase);
         panelDatabase.setLayout(panelDatabaseLayout);
@@ -437,13 +439,13 @@ public class MainView extends javax.swing.JFrame {
                         .addComponent(labelViewTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelDatabaseLayout.createSequentialGroup()
                         .addGap(45, 45, 45)
-                        .addComponent(labelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelVarSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelDatabaseLayout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(scrollPanelEmployees, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(23, Short.MAX_VALUE))
+                        .addGroup(panelDatabaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(scrollPaneDatabase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelDatabaseLayout.createSequentialGroup()
+                                .addComponent(labelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(labelVarSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         panelDatabaseLayout.setVerticalGroup(
             panelDatabaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -455,8 +457,8 @@ public class MainView extends javax.swing.JFrame {
                     .addComponent(labelSearch)
                     .addComponent(labelVarSearch))
                 .addGap(18, 18, 18)
-                .addComponent(scrollPanelEmployees, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addComponent(scrollPaneDatabase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -536,7 +538,13 @@ public class MainView extends javax.swing.JFrame {
         });
     }
    
-
+    public void populateTable() {
+        
+//        tableDatabase.
+        
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAdd;
     private javax.swing.JButton buttonEdit;
@@ -580,11 +588,11 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JLabel labelViewTitle1;
     private javax.swing.JLabel labelWeeksPerYear;
     private javax.swing.JLabel labelWorkLocation;
-    private javax.swing.JList<String> listEmployees;
     private javax.swing.JPanel panelDatabase;
     private javax.swing.JPanel panelEmp;
     private javax.swing.JPanel panelMain;
     private javax.swing.JPanel panelViewEmp;
-    private javax.swing.JScrollPane scrollPanelEmployees;
+    private javax.swing.JScrollPane scrollPaneDatabase;
+    private javax.swing.JTable tableDatabase;
     // End of variables declaration//GEN-END:variables
 }

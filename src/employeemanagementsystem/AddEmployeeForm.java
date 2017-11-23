@@ -130,6 +130,11 @@ public class AddEmployeeForm extends javax.swing.JFrame {
         });
 
         buttonAdd.setText("Add");
+        buttonAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAddActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -295,6 +300,13 @@ public class AddEmployeeForm extends javax.swing.JFrame {
         InterfaceIO.getInstance().cancelFormAddEmployee();
         
     }//GEN-LAST:event_buttonCancelActionPerformed
+
+    private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
+        // TODO add your handling code here:
+        
+        InterfaceIO.getInstance().addFormAddEmployee();
+        
+    }//GEN-LAST:event_buttonAddActionPerformed
 
     /**
      * @param args the command line arguments
