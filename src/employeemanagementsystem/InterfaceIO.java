@@ -6,9 +6,13 @@
 package employeemanagementsystem;
 
 import employeemanagementsystem.employee.EmployeeInfo;
+import employeemanagementsystem.employee.FullTimeEmployee;
+import employeemanagementsystem.employee.PartTimeEmployee;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -115,9 +119,11 @@ public class InterfaceIO {
             }
             
             JOptionPane.showConfirmDialog(mAddForm, 
-                "Please ensure that the Employee Number, Deduct Rate" + dialogAppend, "Number Format Error!", 
-                JOptionPane.OK_OPTION,
+                "Please ensure that the Employee Number, Deduct Rate" + dialogAppend + " fields are numbers.", "Number Format Error!", 
+                JOptionPane.DEFAULT_OPTION,
                 JOptionPane.ERROR_MESSAGE);
+            
+            return;
         }
         
         boolean success = false;
@@ -136,11 +142,11 @@ public class InterfaceIO {
         if (!success) {
             JOptionPane.showConfirmDialog(mAddForm, 
                 "Employee with employee number already exists!", "Employee exists!", 
-                JOptionPane.OK_OPTION,
+                JOptionPane.DEFAULT_OPTION,
                 JOptionPane.ERROR_MESSAGE);
         }
         else {
-            
+            closeFormAddEmployee();
         }
         
         
@@ -179,15 +185,72 @@ public class InterfaceIO {
                 }
             }
         });
+        
+        mMainView.getTableDatabase().getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+            public void valueChanged(ListSelectionEvent event) {
+                // Selected element in database table
+                int empNum = (int) mMainView.getTableDatabase().getValueAt(mMainView.getTableDatabase().getSelectedRow(), 0);
+                populateEmployeeInfo(mManager.searchEmployee(empNum));
+            }
+        });
     }
     
     
-    public void populateTable(ArrayList<EmployeeInfo> employees) {
-        
-        
-        
+    public void populateTable(EmployeeInfo employee) {
+
+        Object[] row = new Object[5];
+        row[0] = employee.getEmpNum();
+        if (employee instanceof FullTimeEmployee)
+            row[1] = "Full Time";
+        else if (employee instanceof PartTimeEmployee)
+            row[1] = "Part Time";
+        else
+            row[1] = "null";
+        row[2] = employee.getFirstName();
+        row[3] = employee.getLastName();
+        row[4] = employee.getWorkLoc();
+
+        mMainView.addRowToTable(row);
         
     }
+    
+    public void populateEmployeeInfo(EmployeeInfo employee) {
+        
+        mMainView.setVarEmpNum(employee.getEmpNum());
+        mMainView.setVarFirstName(employee.getFirstName());
+        mMainView.setVarLastName(employee.getLastName());
+        mMainView.setVarSex(employee.getSex());
+        mMainView.setVarWorkLoc(employee.getWorkLoc());
+        
+        String type = "null";
+        if (employee instanceof FullTimeEmployee)
+            type = "Full Time";
+        else if (employee instanceof PartTimeEmployee)
+            type = "Part Time";
+        mMainView.setVarEmploymentType(type);
+        
+        mMainView.setVarDeductRate(employee.getDeductRate());
+        
+        if (employee instanceof FullTimeEmployee) {
+            FullTimeEmployee fullTimeEmp = (FullTimeEmployee) employee;
+            mMainView.setVarIncome(fullTimeEmp.getYearlySalary());
+            mMainView.setVarHoursPerWeek(0);
+            mMainView.setVarWeeksPerYear(0);
+        }
+        else if (employee instanceof PartTimeEmployee) {
+            PartTimeEmployee partTimeEmp = (PartTimeEmployee) employee;
+            mMainView.setVarIncome(partTimeEmp.getHourlyWage());
+            mMainView.setVarHoursPerWeek(partTimeEmp.getHoursPerWeek());
+            mMainView.setVarWeeksPerYear(partTimeEmp.getWeeksPerYear());
+        }
+        
+        mMainView.setVarGrossIncome(employee.getAnnualGrossIncome());
+        mMainView.setVarDeduction(employee.getAnnualGrossIncome() - employee.getAnnualNetIncome());
+        mMainView.setVarNetIncome(employee.getAnnualNetIncome());
+        
+    }
+    
+    
     
     
 }

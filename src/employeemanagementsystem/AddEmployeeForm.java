@@ -99,7 +99,7 @@ public class AddEmployeeForm extends javax.swing.JFrame {
             }
         });
 
-        labelDeductRate.setText("Deduction Rate");
+        labelDeductRate.setText("Deduction Rate (%)");
 
         fieldDeductRate.setToolTipText("");
 

@@ -426,7 +426,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Lucida Grande" size="13" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="$"/>
+                <Property name="text" type="java.lang.String" value="Select an employee..."/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="labelFirstName">
@@ -439,7 +439,6 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Lucida Grande" size="13" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="$"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="labelLastName">
@@ -452,7 +451,6 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Lucida Grande" size="13" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="$"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="labelSex">
@@ -465,7 +463,6 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Lucida Grande" size="13" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="$"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="labelWorkLocation">
@@ -478,7 +475,6 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Lucida Grande" size="13" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="$"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="labelPayrollSubtitle">
@@ -499,7 +495,6 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Lucida Grande" size="13" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="$"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="labelDeductRate">
@@ -512,7 +507,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Lucida Grande" size="13" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="$"/>
+                <Property name="text" type="java.lang.String" value="%"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="labelIncome">
@@ -539,7 +534,6 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Lucida Grande" size="13" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="$"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
@@ -554,7 +548,6 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Lucida Grande" size="13" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="$"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
@@ -685,14 +678,45 @@
             <Component class="javax.swing.JTable" name="tableDatabase">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="6" rowCount="0">
-                    <Column editable="true" title="Emp. Number" type="java.lang.Object"/>
-                    <Column editable="true" title="First Name" type="java.lang.Object"/>
-                    <Column editable="true" title="Last Name" type="java.lang.Object"/>
-                    <Column editable="true" title="Sex" type="java.lang.Object"/>
-                    <Column editable="true" title="Work Location" type="java.lang.Object"/>
-                    <Column editable="true" title="Deduction Rate" type="java.lang.Object"/>
+                  <Table columnCount="5" rowCount="0">
+                    <Column editable="false" title="Emp. Number" type="java.lang.Object"/>
+                    <Column editable="false" title="Type" type="java.lang.Object"/>
+                    <Column editable="false" title="First Name" type="java.lang.Object"/>
+                    <Column editable="false" title="Last Name" type="java.lang.Object"/>
+                    <Column editable="false" title="Work Location" type="java.lang.Object"/>
                   </Table>
+                </Property>
+                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                  <TableColumnModel selectionModel="0">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="90" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="80" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="80" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="80" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                  </TableColumnModel>
+                </Property>
+                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                  <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
             </Component>

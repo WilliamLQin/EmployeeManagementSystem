@@ -30,7 +30,7 @@ public class EmployeeInfo {
     private String lastName;
     private String sex;
     private String workLoc;
-    private double deductRate; // e.g. 0.21 for 21%
+    private double deductRate; // e.g. 21 for 21%
 
     // CONSTRUCTORS
 
@@ -58,7 +58,7 @@ public class EmployeeInfo {
     }
     public double getAnnualDeduction() 
     {
-        return getAnnualGrossIncome() * deductRate;
+        return getAnnualGrossIncome() * (deductRate/100);
     }
     public double getAnnualNetIncome()
     {

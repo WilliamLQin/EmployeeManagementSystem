@@ -5,6 +5,8 @@
  */
 package employeemanagementsystem;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author williamqin
@@ -170,27 +172,23 @@ public class MainView extends javax.swing.JFrame {
         labelEmpNum.setText("Employee Number");
 
         labelVarEmpNum.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        labelVarEmpNum.setText("$");
+        labelVarEmpNum.setText("Select an employee...");
 
         labelFirstName.setText("First Name");
 
         labelVarFirstName.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        labelVarFirstName.setText("$");
 
         labelLastName.setText("Last Name");
 
         labelVarLastName.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        labelVarLastName.setText("$");
 
         labelSex.setText("Sex");
 
         labelVarSex.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        labelVarSex.setText("$");
 
         labelWorkLocation.setText("Work Location");
 
         labelVarWorkLoc.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        labelVarWorkLoc.setText("$");
 
         labelPayrollSubtitle.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         labelPayrollSubtitle.setText("Payroll Information");
@@ -198,12 +196,11 @@ public class MainView extends javax.swing.JFrame {
         labelType.setText("Employement Type");
 
         labelVarType.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        labelVarType.setText("$");
 
         labelDeductRate.setText("Deduction Rate");
 
         labelVarDeductRate.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        labelVarDeductRate.setText("$");
+        labelVarDeductRate.setText("%");
 
         labelIncome.setText("Annual Salary");
 
@@ -214,14 +211,12 @@ public class MainView extends javax.swing.JFrame {
         labelHoursPerWeek.setEnabled(false);
 
         labelVarHoursPerWeek.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        labelVarHoursPerWeek.setText("$");
         labelVarHoursPerWeek.setEnabled(false);
 
         labelWeeksPerYear.setText("Weeks Per Year");
         labelWeeksPerYear.setEnabled(false);
 
         labelVarWeeksPerYear.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        labelVarWeeksPerYear.setText("$");
         labelVarWeeksPerYear.setEnabled(false);
 
         labelGrossIncome.setText("Gross Income");
@@ -423,10 +418,25 @@ public class MainView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Emp. Number", "First Name", "Last Name", "Sex", "Work Location", "Deduction Rate"
+                "Emp. Number", "Type", "First Name", "Last Name", "Work Location"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         scrollPaneDatabase.setViewportView(tableDatabase);
+        if (tableDatabase.getColumnModel().getColumnCount() > 0) {
+            tableDatabase.getColumnModel().getColumn(0).setPreferredWidth(90);
+            tableDatabase.getColumnModel().getColumn(1).setPreferredWidth(80);
+            tableDatabase.getColumnModel().getColumn(2).setPreferredWidth(80);
+            tableDatabase.getColumnModel().getColumn(3).setPreferredWidth(80);
+            tableDatabase.getColumnModel().getColumn(4).setPreferredWidth(100);
+        }
 
         javax.swing.GroupLayout panelDatabaseLayout = new javax.swing.GroupLayout(panelDatabase);
         panelDatabase.setLayout(panelDatabaseLayout);
@@ -538,12 +548,57 @@ public class MainView extends javax.swing.JFrame {
         });
     }
    
-    public void populateTable() {
+    public void addRowToTable(Object[] row) {
         
-//        tableDatabase.
+        DefaultTableModel model = (DefaultTableModel) tableDatabase.getModel();
+        model.addRow(row);
         
     }
     
+    public javax.swing.JTable getTableDatabase() {
+        return tableDatabase;
+    }
+    
+    public void setVarEmpNum(int empNum) {
+        labelVarEmpNum.setText(String.valueOf(empNum));
+    } 
+    public void setVarFirstName(String firstName) {
+        labelVarFirstName.setText(firstName);
+    }
+    public void setVarLastName(String lastName) {
+        labelVarLastName.setText(lastName);
+    }
+    public void setVarSex(String sex) {
+        labelVarSex.setText(sex);
+    }
+    public void setVarWorkLoc(String workLoc) {
+        labelVarWorkLoc.setText(workLoc);
+    }
+    
+    public void setVarEmploymentType(String type) {
+        labelVarType.setText(type);
+    }
+    public void setVarDeductRate(double deductRate) {
+        labelVarDeductRate.setText(String.format("%.2f", deductRate) + "%");
+    }
+    public void setVarIncome(double income) {
+        labelVarIncome.setText("$" + String.format("%.2f", income));
+    }
+    public void setVarHoursPerWeek(double hoursPerWeek) {
+        labelVarHoursPerWeek.setText(String.format("%.1f", hoursPerWeek));
+    }
+    public void setVarWeeksPerYear(double weeksPerYear) {
+        labelVarWeeksPerYear.setText(String.format("%.1f", weeksPerYear));
+    }
+    public void setVarGrossIncome(double grossIncome) {
+        labelVarGrossIncome.setText("$" + String.format("%.2f", grossIncome));
+    }
+    public void setVarDeduction(double deduction) {
+        labelVarDeduction.setText("$" + String.format("%.2f", deduction));
+    }
+    public void setVarNetIncome(double netIncome) {
+        labelVarNetIncome.setText("$" + String.format("%.2f", netIncome));
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAdd;

@@ -9,6 +9,7 @@ import employeemanagementsystem.employee.EmployeeInfo;
 import employeemanagementsystem.employee.FullTimeEmployee;
 import employeemanagementsystem.employee.PartTimeEmployee;
 import employeemanagementsystem.employee.HashTableEmployeeInfo;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -49,17 +50,38 @@ public class EmployeeManagementSystem {
     
     public boolean addEmployee(int empNum, String firstName, String lastName, String sex, String workLoc, double deductRate, double annualSalary) {
         
-        return mDatabase.addEmployee(new FullTimeEmployee(empNum, firstName, lastName, sex, workLoc, deductRate, annualSalary));
+        return addEmployee(new FullTimeEmployee(empNum, firstName, lastName, sex, workLoc, deductRate, annualSalary));
         
     }
     
     public boolean addEmployee(int empNum, String firstName, String lastName, String sex, String workLoc, double deductRate, double hourlyWage, int hoursPerWeek, int weeksPerYear) {
         
-        return mDatabase.addEmployee(new PartTimeEmployee(empNum, firstName, lastName, sex, workLoc, deductRate, hourlyWage, hoursPerWeek, weeksPerYear));
+        return addEmployee(new PartTimeEmployee(empNum, firstName, lastName, sex, workLoc, deductRate, hourlyWage, hoursPerWeek, weeksPerYear));
         
     }
     
+    private boolean addEmployee(EmployeeInfo emp) {
+        
+        boolean success = mDatabase.addEmployee(emp);
+        if (success)
+            InterfaceIO.getInstance().populateTable(emp);
+        return success;
+        
+    }
     
+    public EmployeeInfo searchEmployee(int empNum) {
+        return mDatabase.searchEmployee(empNum);
+    }
+    
+    public void loadDatabase() {
+        
+        ArrayList<EmployeeInfo> empList = mDatabase.getAllEmployees();
+        
+        for (EmployeeInfo emp : empList) {
+            InterfaceIO.getInstance().populateTable(emp);
+        }
+        
+    }
     
     
 }
