@@ -103,6 +103,7 @@ public class InterfaceIO {
         
         try {
             empNum = Integer.parseInt(numField);
+            
             deductRate = Double.parseDouble(deductRateField);
             
             income = Double.parseDouble(incomeField);
@@ -112,6 +113,7 @@ public class InterfaceIO {
                 weeksPerYear = Integer.parseInt(weeksPerYearField);
             }
         } catch(NumberFormatException e) {
+            
             e.printStackTrace();
             String dialogAppend = ", Hourly Wage, Hours Per Week, and Weeks Per Year";
             if (type.equals("FT")) {
@@ -119,7 +121,7 @@ public class InterfaceIO {
             }
             
             JOptionPane.showConfirmDialog(mAddForm, 
-                "Please ensure that the Employee Number, Deduct Rate" + dialogAppend + " fields are numbers.", "Number Format Error!", 
+                "Please ensure that the Employee Number, Deduct Rate" + dialogAppend + " fields are numbers. Employee Numbers above 2147483647 are not supported.", "Number Format Error!", 
                 JOptionPane.DEFAULT_OPTION,
                 JOptionPane.ERROR_MESSAGE);
             
