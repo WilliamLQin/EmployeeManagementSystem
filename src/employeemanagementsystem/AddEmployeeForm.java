@@ -383,6 +383,55 @@ public class AddEmployeeForm extends javax.swing.JFrame {
     public String getFieldWeeksPerYear() {
         return fieldWeeksPerYear.getText();
     }
+    
+    public void fillFieldsWithEmployee(int empNum, String firstName, String lastName, String sex, String workLoc, double deductRate, double yearlySalary) {
+        
+        fillGenericFields(empNum, firstName, lastName, sex, workLoc, deductRate, yearlySalary);
+        
+        mCurrentEmploymentType = "FT";
+        buttonType.setText("Full Time");
+        labelIncome.setText("Annual Salary");
+        labelHoursPerWeek.setEnabled(false);
+        labelWeeksPerYear.setEnabled(false);
+        fieldHoursPerWeek.setEnabled(false);
+        fieldWeeksPerYear.setEnabled(false);
+        
+    }
+    
+    public void fillFieldsWithEmployee(int empNum, String firstName, String lastName, String sex, String workLoc, double deductRate, double hourlyWage, double hoursPerWeek, double weeksPerYear) {
+        
+        fillGenericFields(empNum, firstName, lastName, sex, workLoc, deductRate, hourlyWage);
+        
+        mCurrentEmploymentType = "PT";
+        buttonType.setText("Part Time");
+        labelIncome.setText("Hourly Wage");
+        labelHoursPerWeek.setEnabled(true);
+        labelWeeksPerYear.setEnabled(true);
+        fieldHoursPerWeek.setEnabled(true);
+        fieldWeeksPerYear.setEnabled(true);
+        
+        fieldHoursPerWeek.setText(String.valueOf(hoursPerWeek));
+        fieldWeeksPerYear.setText(String.valueOf(weeksPerYear));
+        
+    }
+    
+    private void fillGenericFields(int empNum, String firstName, String lastName, String sex, String workLoc, double deductRate, double income) {
+        
+        buttonAdd.setText("Finish");
+        labelAddEmpTitle.setText("Edit Employee");
+        
+        fieldEmpNum.setEnabled(false);
+        
+        fieldEmpNum.setText(String.valueOf(empNum));
+        fieldFirstName.setText(firstName);
+        fieldLastName.setText(lastName);
+        fieldSex.setText(sex);
+        fieldWorkLocation.setText(workLoc);
+        
+        fieldDeductRate.setText(String.valueOf(deductRate));
+        fieldIncome.setText(String.valueOf(income));
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAdd;

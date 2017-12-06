@@ -24,8 +24,6 @@ public class EmployeeManagementSystem {
     private MainView mMainView;
     
     private HashTableEmployeeInfo mDatabase;
-    private EmployeeInfo mActiveEmployee;
-    private int mActiveIndex;
     
     // METHODS
 
@@ -63,8 +61,36 @@ public class EmployeeManagementSystem {
     private boolean addEmployee(EmployeeInfo emp) {
         
         boolean success = mDatabase.addEmployee(emp);
-        if (success)
+        if (success) {
             InterfaceIO.getInstance().populateTable(emp);
+            if (mDatabase.getAllEmployees().isEmpty())
+                InterfaceIO.getInstance().populateEmployeeInfo(emp);
+        }
+        
+        return success;
+        
+    }
+    
+    public boolean editEmployee(int empNum, String firstName, String lastName, String sex, String workLoc, double deductRate, double annualSalary) {
+        
+        return editEmployee(new FullTimeEmployee(empNum, firstName, lastName, sex, workLoc, deductRate, annualSalary));
+        
+    }
+    
+    public boolean editEmployee(int empNum, String firstName, String lastName, String sex, String workLoc, double deductRate, double hourlyWage, int hoursPerWeek, int weeksPerYear) {
+        
+        return editEmployee(new PartTimeEmployee(empNum, firstName, lastName, sex, workLoc, deductRate, hourlyWage, hoursPerWeek, weeksPerYear));
+        
+    }
+    
+    private boolean editEmployee(EmployeeInfo emp) {
+        
+        boolean success = mDatabase.editEmployee(emp);
+        if (success) {
+            loadDatabase();
+            if (mDatabase.getAllEmployees().size() <= 1)
+                InterfaceIO.getInstance().populateEmployeeInfo(emp);
+        }
         return success;
         
     }
@@ -77,9 +103,17 @@ public class EmployeeManagementSystem {
         
         ArrayList<EmployeeInfo> empList = mDatabase.getAllEmployees();
         
+        InterfaceIO.getInstance().clearTable();
+        
         for (EmployeeInfo emp : empList) {
             InterfaceIO.getInstance().populateTable(emp);
         }
+        
+    }
+    
+    public EmployeeInfo removeEmployee(EmployeeInfo emp) {
+        
+        return mDatabase.removeEmployee(emp.getEmpNum());
         
     }
     

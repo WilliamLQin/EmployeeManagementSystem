@@ -33,7 +33,9 @@ public class InterfaceIO {
     private EmployeeManagementSystem mManager;
     private AddEmployeeForm mAddForm;
     private MainView mMainView;
+    private EmployeeInfo mCurrentEmployee;
     
+    private boolean mEditing = false;
     
     // METHODS
     
@@ -77,6 +79,7 @@ public class InterfaceIO {
     }
     
     public void cancelFormAddEmployee() {
+        mEditing = false;
         confirmCloseFormAddEmployee();
     }
     
@@ -130,25 +133,48 @@ public class InterfaceIO {
         
         boolean success = false;
         
-        if (type.equals("FT")) {
-            
-            success = mManager.addEmployee(empNum, firstName, lastName, sex, workLoc, deductRate, income);
-            
-        }
-        else { 
-            
-            success = mManager.addEmployee(empNum, firstName, lastName, sex, workLoc, deductRate, income, hoursPerWeek, weeksPerYear);
-            
-        }
-        
-        if (!success) {
-            JOptionPane.showConfirmDialog(mAddForm, 
-                "Employee with employee number already exists!", "Employee exists!", 
-                JOptionPane.DEFAULT_OPTION,
-                JOptionPane.ERROR_MESSAGE);
+        if (mEditing) {
+            if (type.equals("FT")) {
+
+                success = mManager.editEmployee(empNum, firstName, lastName, sex, workLoc, deductRate, income);
+
+            }
+            else { 
+
+                success = mManager.editEmployee(empNum, firstName, lastName, sex, workLoc, deductRate, income, hoursPerWeek, weeksPerYear);
+
+            }
+            if (!success) {
+                JOptionPane.showConfirmDialog(mAddForm, 
+                    "Editing employee failed. (Employee may not be in database anymore)", "Edit failed!", 
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+                closeFormAddEmployee();
+            }
         }
         else {
-            closeFormAddEmployee();
+            if (type.equals("FT")) {
+
+                success = mManager.addEmployee(empNum, firstName, lastName, sex, workLoc, deductRate, income);
+
+            }
+            else { 
+
+                success = mManager.addEmployee(empNum, firstName, lastName, sex, workLoc, deductRate, income, hoursPerWeek, weeksPerYear);
+
+            }
+
+            if (!success) {
+                JOptionPane.showConfirmDialog(mAddForm, 
+                    "Employee with employee number already exists!", "Employee exists!", 
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+                closeFormAddEmployee();
+            }
         }
         
         
@@ -168,7 +194,7 @@ public class InterfaceIO {
         
         
     }
-    
+
     public void loadView() {
         mMainView = new MainView();
         mMainView.setVisible(true);
@@ -188,6 +214,11 @@ public class InterfaceIO {
             }
         });
         
+        addListenerToTable();
+        
+    }
+    
+    public void addListenerToTable() {
         mMainView.getTableDatabase().getSelectionModel().addListSelectionListener(new ListSelectionListener(){
             public void valueChanged(ListSelectionEvent event) {
                 // Selected element in database table
@@ -197,6 +228,9 @@ public class InterfaceIO {
         });
     }
     
+    public void clearTable() {
+        mMainView.clearTable();
+    }
     
     public void populateTable(EmployeeInfo employee) {
 
@@ -217,6 +251,8 @@ public class InterfaceIO {
     }
     
     public void populateEmployeeInfo(EmployeeInfo employee) {
+        
+        mCurrentEmployee = employee;
         
         mMainView.setVarEmpNum(employee.getEmpNum());
         mMainView.setVarFirstName(employee.getFirstName());
@@ -252,7 +288,59 @@ public class InterfaceIO {
         
     }
     
+    public void removeCurrentEmployee() {
+        
+        mManager.removeEmployee(mCurrentEmployee);
+        
+        mCurrentEmployee.setEmpNum(0);
+        mCurrentEmployee.setFirstName("employee");
+        mCurrentEmployee.setLastName("removed");
+        
+        populateEmployeeInfo(mCurrentEmployee);
+        mCurrentEmployee = null;
+        
+        mManager.loadDatabase();
+        
+    }
     
+    public void editCurrentEmployee() {
+        
+        int num = mCurrentEmployee.getEmpNum();
+        String firstName = mCurrentEmployee.getFirstName();
+        String lastName = mCurrentEmployee.getLastName();
+        String sex = mCurrentEmployee.getSex();
+        String workLoc = mCurrentEmployee.getWorkLoc();
+        double deductRate = mCurrentEmployee.getDeductRate();
+        
+        if (mCurrentEmployee instanceof FullTimeEmployee) {
+            FullTimeEmployee fullEmp = (FullTimeEmployee) mCurrentEmployee;
+            double yearlySalary = fullEmp.getYearlySalary();
+            
+            beginFormAddEmployee();
+            
+            mAddForm.fillFieldsWithEmployee(num, firstName, lastName, sex, workLoc, deductRate, yearlySalary);
+        }
+        else if (mCurrentEmployee instanceof PartTimeEmployee) {
+            PartTimeEmployee partEmp = (PartTimeEmployee) mCurrentEmployee;
+            double hourlyWage = partEmp.getHourlyWage();
+            double hoursPerWeek = partEmp.getHoursPerWeek();
+            double weeksPerYear = partEmp.getWeeksPerYear();
+            
+            beginFormAddEmployee();
+            
+            mAddForm.fillFieldsWithEmployee(num, firstName, lastName, sex, workLoc, deductRate, hourlyWage, hoursPerWeek, weeksPerYear);
+        }
+        else {
+            System.out.println("Employee is a generic employee info (or some other random type)! This should not be happening.");
+            return; // shouldn't happen but just in case
+        }
+        
+        mEditing = true;        
+        
+        
+        
+        
+    }
     
     
 }

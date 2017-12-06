@@ -369,8 +369,18 @@ public class MainView extends javax.swing.JFrame {
         );
 
         buttonEdit.setText("Edit");
+        buttonEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEditActionPerformed(evt);
+            }
+        });
 
         buttonRemove.setText("Remove");
+        buttonRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRemoveActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelViewEmpLayout = new javax.swing.GroupLayout(panelViewEmp);
         panelViewEmp.setLayout(panelViewEmpLayout);
@@ -513,6 +523,19 @@ public class MainView extends javax.swing.JFrame {
         InterfaceIO.getInstance().reloadView();
     }//GEN-LAST:event_buttonNewActionPerformed
 
+    private void buttonRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveActionPerformed
+        // TODO add your handling code here:
+        
+        InterfaceIO.getInstance().removeCurrentEmployee();
+    }//GEN-LAST:event_buttonRemoveActionPerformed
+
+    private void buttonEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditActionPerformed
+        // TODO add your handling code here:
+        
+        InterfaceIO.getInstance().editCurrentEmployee();
+        
+    }//GEN-LAST:event_buttonEditActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -552,6 +575,16 @@ public class MainView extends javax.swing.JFrame {
         
         DefaultTableModel model = (DefaultTableModel) tableDatabase.getModel();
         model.addRow(row);
+        
+    }
+    
+    public void clearTable() {
+        
+        DefaultTableModel model = (DefaultTableModel) tableDatabase.getModel();
+        if (model.getTableModelListeners().length > 0)
+            model.removeTableModelListener(model.getTableModelListeners()[0]);
+        model.setRowCount(0);
+        InterfaceIO.getInstance().addListenerToTable();
         
     }
     

@@ -145,6 +145,25 @@ public class HashTableEmployeeInfo {
         
     }
     
+    public boolean editEmployee(EmployeeInfo emp) {
+        
+        // Set the reference to the employee from the hash table
+        // with the same employee number to the new employee.
+        // If the employee is not in the hash table, return false.
+        
+        int key = emp.getEmpNum();
+        
+        ArrayList<EmployeeInfo> bucket = buckets[calcBucket(key)];
+        
+        int index = findEmployeeIndex(emp.getEmpNum());
+        
+        if (index != -1) {
+            bucket.set(index, emp);
+            return true;
+        }
+        return false;
+    }
+    
     public ArrayList<EmployeeInfo> getAllEmployees() {
         
         ArrayList<EmployeeInfo> all = new ArrayList<EmployeeInfo>();
