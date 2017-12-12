@@ -73,13 +73,13 @@ public class InterfaceIO {
     }
     
     private void closeFormAddEmployee() {
+        mEditing = false;
         mAddForm.dispose();
         mMainView.setEnabled(true);
         mMainView.setFocusable(true);
     }
     
     public void cancelFormAddEmployee() {
-        mEditing = false;
         confirmCloseFormAddEmployee();
     }
     
@@ -101,8 +101,8 @@ public class InterfaceIO {
         int empNum = 0;
         double deductRate = 0;
         double income = 0;
-        int hoursPerWeek = 0;
-        int weeksPerYear = 0;
+        double hoursPerWeek = 0;
+        double weeksPerYear = 0;
         
         try {
             empNum = Integer.parseInt(numField);
@@ -112,8 +112,8 @@ public class InterfaceIO {
             income = Double.parseDouble(incomeField);
             
             if (!type.equals("FT")) {
-                hoursPerWeek = Integer.parseInt(hoursPerWeekField);
-                weeksPerYear = Integer.parseInt(weeksPerYearField);
+                hoursPerWeek = Double.parseDouble(hoursPerWeekField);
+                weeksPerYear = Double.parseDouble(weeksPerYearField);
             }
         } catch(NumberFormatException e) {
             
@@ -213,19 +213,17 @@ public class InterfaceIO {
                 }
             }
         });
-        
-        addListenerToTable();
-        
-    }
-    
-    public void addListenerToTable() {
         mMainView.getTableDatabase().getSelectionModel().addListSelectionListener(new ListSelectionListener(){
             public void valueChanged(ListSelectionEvent event) {
                 // Selected element in database table
-                int empNum = (int) mMainView.getTableDatabase().getValueAt(mMainView.getTableDatabase().getSelectedRow(), 0);
+                int selectedRow = mMainView.getTableDatabase().getSelectedRow();
+                if (selectedRow < 0)
+                    return;
+                int empNum = (int) mMainView.getTableDatabase().getValueAt(selectedRow, 0);
                 populateEmployeeInfo(mManager.searchEmployee(empNum));
             }
         });
+        
     }
     
     public void clearTable() {
@@ -261,10 +259,16 @@ public class InterfaceIO {
         mMainView.setVarWorkLoc(employee.getWorkLoc());
         
         String type = "null";
-        if (employee instanceof FullTimeEmployee)
+        if (employee instanceof FullTimeEmployee) {
             type = "Full Time";
-        else if (employee instanceof PartTimeEmployee)
+            mMainView.setLabelIncome("Annual Salary");
+            mMainView.setPartTimeLabels(false);
+        }
+        else if (employee instanceof PartTimeEmployee) {
             type = "Part Time";
+            mMainView.setLabelIncome("Hourly Wage");
+            mMainView.setPartTimeLabels(true);
+        }
         mMainView.setVarEmploymentType(type);
         
         mMainView.setVarDeductRate(employee.getDeductRate());
@@ -292,11 +296,7 @@ public class InterfaceIO {
         
         mManager.removeEmployee(mCurrentEmployee);
         
-        mCurrentEmployee.setEmpNum(0);
-        mCurrentEmployee.setFirstName("employee");
-        mCurrentEmployee.setLastName("removed");
-        
-        populateEmployeeInfo(mCurrentEmployee);
+        populateEmployeeInfo(new EmployeeInfo(-1, "", "", "", "", -1.0));
         mCurrentEmployee = null;
         
         mManager.loadDatabase();
@@ -304,6 +304,9 @@ public class InterfaceIO {
     }
     
     public void editCurrentEmployee() {
+        
+        if (mCurrentEmployee == null)
+            return;
         
         int num = mCurrentEmployee.getEmpNum();
         String firstName = mCurrentEmployee.getFirstName();
@@ -335,10 +338,16 @@ public class InterfaceIO {
             return; // shouldn't happen but just in case
         }
         
-        mEditing = true;        
+        mEditing = true;
         
+    }
+    
+    public void searchEmployees(String term, String type) {
         
-        
+        if (type.equals("Show All"))
+            mManager.loadDatabase();
+        else
+            mManager.searchDatabase(term, type);
         
     }
     

@@ -73,6 +73,10 @@ public class HashTableEmployeeInfo {
         // Current hashing algorithm: modulo
         
         // Returns the bucket number as the integer keyValue modulo the number of buckets for the hash table.
+        while (keyValue < 0) {
+            keyValue += buckets.length;
+        }
+        
         return(keyValue % buckets.length);
     }
 
@@ -166,11 +170,13 @@ public class HashTableEmployeeInfo {
     
     public ArrayList<EmployeeInfo> getAllEmployees() {
         
+        // Return all of the employees in the hash table in an ArrayList.
+        
         ArrayList<EmployeeInfo> all = new ArrayList<EmployeeInfo>();
         
         for (int i = 0; i < buckets.length; i++) {
 
-            // For the current bucket, print out the emp num for each item in its ArrayList.
+            // For the current bucket, add each item in its ArrayList to the final ArrayList.
 
             int listSize = buckets[i].size();
 
@@ -181,6 +187,68 @@ public class HashTableEmployeeInfo {
         }
         
         return all;
+        
+    }
+    
+    public ArrayList<EmployeeInfo> searchEmployees(String term, String type) {
+        
+        // Return all of the employees in the hash table that 
+        // match the search requirements in an ArrayList.
+        // Return an empty ArrayList if no employees found or search not formatted correctly.
+        
+        ArrayList<EmployeeInfo> retrieved = new ArrayList<EmployeeInfo>();
+        
+        for (int i = 0; i < buckets.length; i++) {
+
+            // For the current bucket, add each item in its ArrayList 
+            // to the final ArrayList if the search condition matches.
+
+            int listSize = buckets[i].size();
+
+            for (int j = 0; j < listSize; j++) {
+                
+                boolean match = false;
+                EmployeeInfo emp = buckets[i].get(j);
+                
+                switch(type) {
+                    case "Employee Number":
+                        int num;
+                        try {
+                            num = Integer.parseInt(term);
+                        }
+                        catch (NumberFormatException e) {
+                            e.printStackTrace();
+                            return retrieved;
+                        }
+                        match = emp.getEmpNum() == num;
+                        break;
+                    case "First Name":
+                        match = emp.getFirstName().equals(term);
+                        break;
+                    case "Last Name":
+                        match = emp.getLastName().equals(term);
+                        break;
+                    case "Sex":
+                        match = emp.getSex().equals(term);
+                        break;
+                    case "Work Location":
+                        match = emp.getWorkLoc().equals(term);
+                        break;
+                    case "Part Time":
+                        match = emp instanceof PartTimeEmployee;
+                        break;
+                    case "Full Time":
+                        match = emp instanceof FullTimeEmployee;
+                        break;
+                }
+                
+                if (match)
+                    retrieved.add(emp);
+            }
+
+        }
+        
+        return retrieved;
         
     }
     

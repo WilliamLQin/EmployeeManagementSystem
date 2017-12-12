@@ -52,7 +52,7 @@ public class EmployeeManagementSystem {
         
     }
     
-    public boolean addEmployee(int empNum, String firstName, String lastName, String sex, String workLoc, double deductRate, double hourlyWage, int hoursPerWeek, int weeksPerYear) {
+    public boolean addEmployee(int empNum, String firstName, String lastName, String sex, String workLoc, double deductRate, double hourlyWage, double hoursPerWeek, double weeksPerYear) {
         
         return addEmployee(new PartTimeEmployee(empNum, firstName, lastName, sex, workLoc, deductRate, hourlyWage, hoursPerWeek, weeksPerYear));
         
@@ -63,10 +63,8 @@ public class EmployeeManagementSystem {
         boolean success = mDatabase.addEmployee(emp);
         if (success) {
             InterfaceIO.getInstance().populateTable(emp);
-            if (mDatabase.getAllEmployees().isEmpty())
-                InterfaceIO.getInstance().populateEmployeeInfo(emp);
+            InterfaceIO.getInstance().populateEmployeeInfo(emp);
         }
-        
         return success;
         
     }
@@ -77,7 +75,7 @@ public class EmployeeManagementSystem {
         
     }
     
-    public boolean editEmployee(int empNum, String firstName, String lastName, String sex, String workLoc, double deductRate, double hourlyWage, int hoursPerWeek, int weeksPerYear) {
+    public boolean editEmployee(int empNum, String firstName, String lastName, String sex, String workLoc, double deductRate, double hourlyWage, double hoursPerWeek, double weeksPerYear) {
         
         return editEmployee(new PartTimeEmployee(empNum, firstName, lastName, sex, workLoc, deductRate, hourlyWage, hoursPerWeek, weeksPerYear));
         
@@ -88,8 +86,7 @@ public class EmployeeManagementSystem {
         boolean success = mDatabase.editEmployee(emp);
         if (success) {
             loadDatabase();
-            if (mDatabase.getAllEmployees().size() <= 1)
-                InterfaceIO.getInstance().populateEmployeeInfo(emp);
+            InterfaceIO.getInstance().populateEmployeeInfo(emp);
         }
         return success;
         
@@ -114,6 +111,18 @@ public class EmployeeManagementSystem {
     public EmployeeInfo removeEmployee(EmployeeInfo emp) {
         
         return mDatabase.removeEmployee(emp.getEmpNum());
+        
+    }
+    
+    public void searchDatabase(String term, String type) {
+        
+        ArrayList<EmployeeInfo> empList = mDatabase.searchEmployees(term, type);
+        
+        InterfaceIO.getInstance().clearTable();
+        
+        for (EmployeeInfo emp : empList) {
+            InterfaceIO.getInstance().populateTable(emp);
+        }
         
     }
     
