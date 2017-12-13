@@ -23,6 +23,10 @@ This class is the super class for holding employee information.
 
 public class EmployeeInfo {
 
+    // CONSTANTS
+    
+    protected String DATA_SEPARATOR = "--";
+    
     // ATTRIBUTES
 
     private int empNum;
@@ -49,7 +53,16 @@ public class EmployeeInfo {
     @Override
     public String toString()
     {
-        return firstName + ", " + lastName;
+        if (firstName.isEmpty())
+            firstName = " ";
+        if (lastName.isEmpty())
+            lastName = " ";
+        if (sex.isEmpty())
+            sex = " ";
+        if (workLoc.isEmpty())
+            workLoc = " ";
+        
+        return String.valueOf(empNum) + DATA_SEPARATOR + firstName + DATA_SEPARATOR + lastName + DATA_SEPARATOR + sex + DATA_SEPARATOR + workLoc + DATA_SEPARATOR + String.valueOf(deductRate);
     }
 
     public double getAnnualGrossIncome()

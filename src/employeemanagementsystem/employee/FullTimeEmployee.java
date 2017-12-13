@@ -33,6 +33,12 @@ public class FullTimeEmployee extends EmployeeInfo {
     }
 
     // METHODS
+    
+    @Override
+    public String toString()
+    {
+        return "FT" + DATA_SEPARATOR + super.toString() + DATA_SEPARATOR + String.valueOf(yearlySalary);
+    }
 
     @Override
     public double getAnnualGrossIncome()

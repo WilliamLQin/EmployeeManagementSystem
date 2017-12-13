@@ -37,6 +37,12 @@ public class PartTimeEmployee extends EmployeeInfo {
     }
 
     // METHODS
+    
+    @Override
+    public String toString()
+    {
+        return "PT" + DATA_SEPARATOR + super.toString() + DATA_SEPARATOR + String.valueOf(hourlyWage) + DATA_SEPARATOR + String.valueOf(hoursPerWeek) + DATA_SEPARATOR + String.valueOf(weeksPerYear);
+    }
 
     @Override
     public double getAnnualGrossIncome()

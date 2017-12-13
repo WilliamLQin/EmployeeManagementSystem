@@ -104,8 +104,18 @@ public class MainView extends javax.swing.JFrame {
         });
 
         buttonOpen.setText("Open");
+        buttonOpen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonOpenActionPerformed(evt);
+            }
+        });
 
         buttonSave.setText("Save");
+        buttonSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSaveActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelMainLayout = new javax.swing.GroupLayout(panelMain);
         panelMain.setLayout(panelMainLayout);
@@ -434,6 +444,12 @@ public class MainView extends javax.swing.JFrame {
             tableDatabase.getColumnModel().getColumn(4).setPreferredWidth(100);
         }
 
+        fieldSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fieldSearchActionPerformed(evt);
+            }
+        });
+
         buttonSearch.setText("Search");
         buttonSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -542,11 +558,29 @@ public class MainView extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         String type = comboBoxSearchType.getSelectedItem().toString();
-        System.out.println(type);
         
         InterfaceIO.getInstance().searchEmployees(fieldSearch.getText(), type);
         
     }//GEN-LAST:event_buttonSearchActionPerformed
+
+    private void fieldSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldSearchActionPerformed
+        // TODO add your handling code here:
+        
+        buttonSearchActionPerformed(evt);
+        
+    }//GEN-LAST:event_fieldSearchActionPerformed
+
+    private void buttonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSaveActionPerformed
+        // TODO add your handling code here:
+        
+        InterfaceIO.getInstance().saveDatabase();
+    }//GEN-LAST:event_buttonSaveActionPerformed
+
+    private void buttonOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOpenActionPerformed
+        // TODO add your handling code here:
+        
+        InterfaceIO.getInstance().openDatabase();
+    }//GEN-LAST:event_buttonOpenActionPerformed
 
     /**
      * @param args the command line arguments
