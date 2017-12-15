@@ -33,7 +33,7 @@ public class EmployeeManagementSystem {
     
     private final String SAVE_NAME = "employees.txt";
     private final int DATABASE_BUCKETS = 10;
-    private final String DATA_SEPARATOR = "--";
+    private final String DATA_SEPARATOR = ",";
     
     // METHODS
 
@@ -79,23 +79,23 @@ public class EmployeeManagementSystem {
         
     }
     
-    public boolean editEmployee(int empNum, String firstName, String lastName, String sex, String workLoc, double deductRate, double annualSalary) {
+    public boolean editEmployee(int prevEmpNum, int currEmpNum, String firstName, String lastName, String sex, String workLoc, double deductRate, double annualSalary) {
         
-        return editEmployee(new FullTimeEmployee(empNum, firstName, lastName, sex, workLoc, deductRate, annualSalary));
-        
-    }
-    
-    public boolean editEmployee(int empNum, String firstName, String lastName, String sex, String workLoc, double deductRate, double hourlyWage, double hoursPerWeek, double weeksPerYear) {
-        
-        return editEmployee(new PartTimeEmployee(empNum, firstName, lastName, sex, workLoc, deductRate, hourlyWage, hoursPerWeek, weeksPerYear));
+        return editEmployee(prevEmpNum, new FullTimeEmployee(currEmpNum, firstName, lastName, sex, workLoc, deductRate, annualSalary));
         
     }
     
-    private boolean editEmployee(EmployeeInfo emp) {
+    public boolean editEmployee(int prevEmpNum, int currEmpNum, String firstName, String lastName, String sex, String workLoc, double deductRate, double hourlyWage, double hoursPerWeek, double weeksPerYear) {
         
-        boolean success = mDatabase.editEmployee(emp);
+        return editEmployee(prevEmpNum, new PartTimeEmployee(currEmpNum, firstName, lastName, sex, workLoc, deductRate, hourlyWage, hoursPerWeek, weeksPerYear));
+        
+    }
+    
+    private boolean editEmployee(int prevEmpNum, EmployeeInfo emp) {
+        
+        boolean success = mDatabase.editEmployee(prevEmpNum, emp);
         if (success) {
-            loadDatabase();
+            InterfaceIO.getInstance().reloadTable();
             InterfaceIO.getInstance().populateEmployeeInfo(emp);
         }
         return success;
@@ -106,7 +106,7 @@ public class EmployeeManagementSystem {
         return mDatabase.searchEmployee(empNum);
     }
     
-    public void loadDatabase() {
+    public void reloadFullDatabase() {
         
         ArrayList<EmployeeInfo> empList = mDatabase.getAllEmployees();
         

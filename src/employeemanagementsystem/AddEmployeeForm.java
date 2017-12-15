@@ -420,7 +420,7 @@ public class AddEmployeeForm extends javax.swing.JFrame {
         buttonAdd.setText("Finish");
         labelAddEmpTitle.setText("Edit Employee");
         
-        fieldEmpNum.setEnabled(false);
+//        fieldEmpNum.setEnabled(false);
         
         fieldEmpNum.setText(String.valueOf(empNum));
         fieldFirstName.setText(firstName);

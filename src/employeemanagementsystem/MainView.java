@@ -35,9 +35,6 @@ public class MainView extends javax.swing.JFrame {
         panelMain = new javax.swing.JPanel();
         labelTitle = new javax.swing.JLabel();
         buttonAdd = new javax.swing.JButton();
-        labelPrompt = new javax.swing.JLabel();
-        buttonNew = new javax.swing.JButton();
-        buttonOpen = new javax.swing.JButton();
         buttonSave = new javax.swing.JButton();
         panelViewEmp = new javax.swing.JPanel();
         labelViewTitle = new javax.swing.JLabel();
@@ -94,22 +91,6 @@ public class MainView extends javax.swing.JFrame {
             }
         });
 
-        labelPrompt.setText("Welcome!");
-
-        buttonNew.setText("New");
-        buttonNew.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonNewActionPerformed(evt);
-            }
-        });
-
-        buttonOpen.setText("Open");
-        buttonOpen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonOpenActionPerformed(evt);
-            }
-        });
-
         buttonSave.setText("Save");
         buttonSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,36 +104,26 @@ public class MainView extends javax.swing.JFrame {
             panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelMainLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelMainLayout.createSequentialGroup()
-                        .addComponent(buttonNew)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonOpen)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonSave)
-                        .addGap(18, 18, 18)
-                        .addComponent(labelPrompt, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(78, 78, 78)
-                .addComponent(buttonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(labelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(buttonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         panelMainLayout.setVerticalGroup(
             panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMainLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(panelMainLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelMainLayout.createSequentialGroup()
                         .addComponent(labelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(panelMainLayout.createSequentialGroup()
                         .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonNew)
-                            .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(buttonOpen)
-                                .addComponent(buttonSave)
-                                .addComponent(labelPrompt)))))
-                .addContainerGap())
+                            .addComponent(buttonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         panelViewEmp.setEnabled(false);
@@ -175,18 +146,36 @@ public class MainView extends javax.swing.JFrame {
         labelFirstName.setText("First Name");
 
         labelVarFirstName.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        labelVarFirstName.setText(" ");
+        labelVarFirstName.setAutoscrolls(true);
+        labelVarFirstName.setMaximumSize(new java.awt.Dimension(210, 16));
+        labelVarFirstName.setMinimumSize(new java.awt.Dimension(210, 16));
+        labelVarFirstName.setPreferredSize(new java.awt.Dimension(210, 16));
 
         labelLastName.setText("Last Name");
 
         labelVarLastName.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        labelVarLastName.setText(" ");
+        labelVarLastName.setMaximumSize(new java.awt.Dimension(210, 16));
+        labelVarLastName.setMinimumSize(new java.awt.Dimension(210, 16));
+        labelVarLastName.setPreferredSize(new java.awt.Dimension(210, 16));
 
         labelSex.setText("Sex");
 
         labelVarSex.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        labelVarSex.setText(" ");
+        labelVarSex.setMaximumSize(new java.awt.Dimension(210, 16));
+        labelVarSex.setMinimumSize(new java.awt.Dimension(210, 16));
+        labelVarSex.setPreferredSize(new java.awt.Dimension(210, 16));
 
         labelWorkLocation.setText("Work Location");
+        labelWorkLocation.setToolTipText("");
 
         labelVarWorkLoc.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        labelVarWorkLoc.setText(" ");
+        labelVarWorkLoc.setMaximumSize(new java.awt.Dimension(210, 16));
+        labelVarWorkLoc.setMinimumSize(new java.awt.Dimension(210, 16));
+        labelVarWorkLoc.setPreferredSize(new java.awt.Dimension(210, 16));
 
         labelPayrollSubtitle.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         labelPayrollSubtitle.setText("Payroll Information");
@@ -194,43 +183,70 @@ public class MainView extends javax.swing.JFrame {
         labelType.setText("Employement Type");
 
         labelVarType.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        labelVarType.setText(" ");
+        labelVarType.setMaximumSize(new java.awt.Dimension(210, 16));
+        labelVarType.setMinimumSize(new java.awt.Dimension(210, 16));
+        labelVarType.setPreferredSize(new java.awt.Dimension(210, 16));
 
         labelDeductRate.setText("Deduction Rate");
 
         labelVarDeductRate.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         labelVarDeductRate.setText("%");
+        labelVarDeductRate.setMaximumSize(new java.awt.Dimension(210, 16));
+        labelVarDeductRate.setMinimumSize(new java.awt.Dimension(210, 16));
+        labelVarDeductRate.setPreferredSize(new java.awt.Dimension(210, 16));
 
         labelIncome.setText("Annual Salary");
 
         labelVarIncome.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         labelVarIncome.setText("$");
+        labelVarIncome.setMaximumSize(new java.awt.Dimension(210, 16));
+        labelVarIncome.setMinimumSize(new java.awt.Dimension(210, 16));
+        labelVarIncome.setPreferredSize(new java.awt.Dimension(210, 16));
 
         labelHoursPerWeek.setText("Hours Per Week");
         labelHoursPerWeek.setEnabled(false);
 
         labelVarHoursPerWeek.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        labelVarHoursPerWeek.setText(" ");
         labelVarHoursPerWeek.setEnabled(false);
+        labelVarHoursPerWeek.setMaximumSize(new java.awt.Dimension(210, 16));
+        labelVarHoursPerWeek.setMinimumSize(new java.awt.Dimension(210, 16));
+        labelVarHoursPerWeek.setPreferredSize(new java.awt.Dimension(210, 16));
 
         labelWeeksPerYear.setText("Weeks Per Year");
         labelWeeksPerYear.setEnabled(false);
 
         labelVarWeeksPerYear.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        labelVarWeeksPerYear.setText(" ");
         labelVarWeeksPerYear.setEnabled(false);
+        labelVarWeeksPerYear.setMaximumSize(new java.awt.Dimension(210, 16));
+        labelVarWeeksPerYear.setMinimumSize(new java.awt.Dimension(210, 16));
+        labelVarWeeksPerYear.setPreferredSize(new java.awt.Dimension(210, 16));
 
         labelGrossIncome.setText("Gross Income");
 
         labelVarGrossIncome.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         labelVarGrossIncome.setText("$");
+        labelVarGrossIncome.setMaximumSize(new java.awt.Dimension(210, 16));
+        labelVarGrossIncome.setMinimumSize(new java.awt.Dimension(210, 16));
+        labelVarGrossIncome.setPreferredSize(new java.awt.Dimension(210, 16));
 
         labelDeduction.setText("Deduction");
 
         labelVarDeduction.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         labelVarDeduction.setText("$");
+        labelVarDeduction.setMaximumSize(new java.awt.Dimension(210, 16));
+        labelVarDeduction.setMinimumSize(new java.awt.Dimension(210, 16));
+        labelVarDeduction.setPreferredSize(new java.awt.Dimension(210, 16));
 
         labelNetIncome.setText("Net Income");
 
         labelVarNetIncome.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         labelVarNetIncome.setText("$");
+        labelVarNetIncome.setMaximumSize(new java.awt.Dimension(210, 16));
+        labelVarNetIncome.setMinimumSize(new java.awt.Dimension(210, 16));
+        labelVarNetIncome.setPreferredSize(new java.awt.Dimension(210, 16));
 
         javax.swing.GroupLayout panelEmpLayout = new javax.swing.GroupLayout(panelEmp);
         panelEmp.setLayout(panelEmpLayout);
@@ -255,53 +271,56 @@ public class MainView extends javax.swing.JFrame {
                                     .addComponent(labelFirstName)
                                     .addComponent(labelEmpNum))
                                 .addGap(47, 47, 47)
-                                .addGroup(panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panelEmpLayout.createSequentialGroup()
-                                        .addComponent(labelVarEmpNum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(6, 6, 6))
+                                .addGroup(panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(labelVarEmpNum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(labelVarLastName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(labelVarFirstName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(labelVarSex, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(panelEmpLayout.createSequentialGroup()
-                                        .addGroup(panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(labelVarLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(labelVarWorkLoc, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 0, Short.MAX_VALUE))))
+                                    .addComponent(labelVarWorkLoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(panelEmpLayout.createSequentialGroup()
                                 .addGroup(panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panelEmpLayout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addGroup(panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(labelDeduction, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(labelNetIncome, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(panelEmpLayout.createSequentialGroup()
+                                            .addGap(0, 0, Short.MAX_VALUE)
                                             .addGroup(panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(labelHoursPerWeek, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(labelWeeksPerYear, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(labelGrossIncome, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                        .addGap(12, 12, 12))
+                                                .addComponent(labelDeduction, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(labelNetIncome, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(labelHoursPerWeek, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(labelWeeksPerYear, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(labelGrossIncome, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addGap(12, 12, 12))
+                                        .addGroup(panelEmpLayout.createSequentialGroup()
+                                            .addGroup(panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(panelEmpLayout.createSequentialGroup()
+                                                    .addComponent(labelDeductRate)
+                                                    .addGap(0, 0, Short.MAX_VALUE))
+                                                .addComponent(labelIncome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addGap(44, 44, 44)))
                                     .addGroup(panelEmpLayout.createSequentialGroup()
                                         .addComponent(labelType)
-                                        .addGap(42, 42, 42))
+                                        .addGap(42, 42, 42)))
+                                .addGroup(panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEmpLayout.createSequentialGroup()
+                                        .addGroup(panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(labelVarNetIncome, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(panelEmpLayout.createSequentialGroup()
+                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                .addGroup(panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                    .addComponent(labelVarDeduction, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(labelVarGrossIncome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(labelVarWeeksPerYear, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                        .addGap(65, 65, 65))
                                     .addGroup(panelEmpLayout.createSequentialGroup()
                                         .addGroup(panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(panelEmpLayout.createSequentialGroup()
-                                                .addComponent(labelDeductRate)
-                                                .addGap(0, 0, Short.MAX_VALUE))
-                                            .addComponent(labelIncome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGap(44, 44, 44)))
-                                .addGroup(panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelVarHoursPerWeek, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(labelVarWeeksPerYear, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(labelVarGrossIncome, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(labelVarDeduction, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(labelVarNetIncome, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(labelVarIncome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(labelVarDeductRate, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(labelVarType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addGap(6, 6, 6)))))
+                                            .addGroup(panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(labelVarHoursPerWeek, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                    .addComponent(labelVarIncome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(labelVarDeductRate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                            .addComponent(labelVarType, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE)))))))
                 .addContainerGap())
         );
         panelEmpLayout.setVerticalGroup(
@@ -316,53 +335,53 @@ public class MainView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelFirstName)
-                    .addComponent(labelVarFirstName))
+                    .addComponent(labelVarFirstName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelLastName)
-                    .addComponent(labelVarLastName))
+                    .addComponent(labelVarLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(labelSex)
-                    .addComponent(labelVarSex))
+                    .addComponent(labelVarSex, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelVarWorkLoc)
+                    .addComponent(labelVarWorkLoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelWorkLocation))
                 .addGap(18, 18, 18)
                 .addComponent(labelPayrollSubtitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelType)
-                    .addComponent(labelVarType))
+                    .addComponent(labelVarType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelDeductRate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelVarDeductRate))
+                    .addComponent(labelVarDeductRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelVarIncome)
+                    .addComponent(labelVarIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelIncome))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelHoursPerWeek)
-                    .addComponent(labelVarHoursPerWeek))
+                    .addComponent(labelVarHoursPerWeek, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelWeeksPerYear)
-                    .addComponent(labelVarWeeksPerYear))
+                    .addComponent(labelVarWeeksPerYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelGrossIncome)
-                    .addComponent(labelVarGrossIncome))
+                    .addComponent(labelVarGrossIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelDeduction)
-                    .addComponent(labelVarDeduction))
+                    .addComponent(labelVarDeduction, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelNetIncome)
-                    .addComponent(labelVarNetIncome))
+                    .addComponent(labelVarNetIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25))
         );
 
@@ -397,7 +416,7 @@ public class MainView extends javax.swing.JFrame {
                     .addGroup(panelViewEmpLayout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(panelEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         panelViewEmpLayout.setVerticalGroup(
             panelViewEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -417,7 +436,7 @@ public class MainView extends javax.swing.JFrame {
         labelViewTitle1.setText("View Database");
         labelViewTitle1.setToolTipText("");
 
-        labelSearch.setText("Searched Term:");
+        labelSearch.setText("Search By:");
 
         tableDatabase.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -457,30 +476,30 @@ public class MainView extends javax.swing.JFrame {
             }
         });
 
-        comboBoxSearchType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Employee Number", "First Name", "Last Name", "Sex", "Work Location", "Show All", "Full Time", "Part Time" }));
+        comboBoxSearchType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Show All", "Employee Number", "First Name", "Last Name", "Sex", "Work Location", "Full Time", "Part Time" }));
 
         javax.swing.GroupLayout panelDatabaseLayout = new javax.swing.GroupLayout(panelDatabase);
         panelDatabase.setLayout(panelDatabaseLayout);
         panelDatabaseLayout.setHorizontalGroup(
             panelDatabaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDatabaseLayout.createSequentialGroup()
-                .addGroup(panelDatabaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelDatabaseLayout.createSequentialGroup()
+                .addGroup(panelDatabaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelDatabaseLayout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addComponent(labelViewTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(comboBoxSearchType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(21, 21, 21)
+                        .addComponent(labelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(comboBoxSearchType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panelDatabaseLayout.createSequentialGroup()
                         .addGap(45, 45, 45)
                         .addGroup(panelDatabaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(scrollPaneDatabase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(panelDatabaseLayout.createSequentialGroup()
-                                .addComponent(labelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(fieldSearch)))))
-                .addGap(41, 41, 41))
+                                .addComponent(fieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(buttonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         panelDatabaseLayout.setVerticalGroup(
             panelDatabaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -488,12 +507,12 @@ public class MainView extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(panelDatabaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelViewTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonSearch)
-                    .addComponent(comboBoxSearchType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboBoxSearchType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelSearch))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelDatabaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelSearch)
-                    .addComponent(fieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonSearch))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(scrollPaneDatabase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(44, Short.MAX_VALUE))
@@ -517,12 +536,12 @@ public class MainView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(panelMain, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(panelViewEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelDatabase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -534,12 +553,6 @@ public class MainView extends javax.swing.JFrame {
         InterfaceIO.getInstance().beginFormAddEmployee();
         
     }//GEN-LAST:event_buttonAddActionPerformed
-
-    private void buttonNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNewActionPerformed
-        // TODO add your handling code here:
-        
-        InterfaceIO.getInstance().reloadView();
-    }//GEN-LAST:event_buttonNewActionPerformed
 
     private void buttonRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveActionPerformed
         // TODO add your handling code here:
@@ -557,9 +570,7 @@ public class MainView extends javax.swing.JFrame {
     private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
         // TODO add your handling code here:
         
-        String type = comboBoxSearchType.getSelectedItem().toString();
-        
-        InterfaceIO.getInstance().searchEmployees(fieldSearch.getText(), type);
+        searchDatabase();
         
     }//GEN-LAST:event_buttonSearchActionPerformed
 
@@ -575,12 +586,6 @@ public class MainView extends javax.swing.JFrame {
         
         InterfaceIO.getInstance().saveDatabase();
     }//GEN-LAST:event_buttonSaveActionPerformed
-
-    private void buttonOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOpenActionPerformed
-        // TODO add your handling code here:
-        
-        InterfaceIO.getInstance().openDatabase();
-    }//GEN-LAST:event_buttonOpenActionPerformed
 
     /**
      * @param args the command line arguments
@@ -616,6 +621,12 @@ public class MainView extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void searchDatabase() {
+        String type = comboBoxSearchType.getSelectedItem().toString();
+        
+        InterfaceIO.getInstance().searchEmployees(fieldSearch.getText(), type);
+    }
    
     public void addRowToTable(Object[] row) {
         
@@ -633,12 +644,21 @@ public class MainView extends javax.swing.JFrame {
         
     }
     
+    public void selectRow(int row) {
+        
+        tableDatabase.setRowSelectionInterval(row, row);
+        
+    }
+    
     public javax.swing.JTable getTableDatabase() {
         return tableDatabase;
     }
     
     public void setVarEmpNum(int empNum) {
-        labelVarEmpNum.setText(String.valueOf(empNum));
+        if (empNum == -1)
+            labelVarEmpNum.setText("Select an employee...");
+        else
+            labelVarEmpNum.setText(String.valueOf(empNum));
     } 
     public void setVarFirstName(String firstName) {
         labelVarFirstName.setText(firstName);
@@ -690,8 +710,6 @@ public class MainView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAdd;
     private javax.swing.JButton buttonEdit;
-    private javax.swing.JButton buttonNew;
-    private javax.swing.JButton buttonOpen;
     private javax.swing.JButton buttonRemove;
     private javax.swing.JButton buttonSave;
     private javax.swing.JButton buttonSearch;
@@ -708,7 +726,6 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JLabel labelLastName;
     private javax.swing.JLabel labelNetIncome;
     private javax.swing.JLabel labelPayrollSubtitle;
-    private javax.swing.JLabel labelPrompt;
     private javax.swing.JLabel labelSearch;
     private javax.swing.JLabel labelSex;
     private javax.swing.JLabel labelTitle;

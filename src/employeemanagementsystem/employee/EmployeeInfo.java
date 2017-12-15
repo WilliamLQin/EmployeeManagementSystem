@@ -25,7 +25,7 @@ public class EmployeeInfo {
 
     // CONSTANTS
     
-    protected String DATA_SEPARATOR = "--";
+    protected String DATA_SEPARATOR = ",";
     
     // ATTRIBUTES
 

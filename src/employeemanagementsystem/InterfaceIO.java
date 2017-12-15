@@ -34,6 +34,7 @@ public class InterfaceIO {
     private AddEmployeeForm mAddForm;
     private MainView mMainView;
     private EmployeeInfo mCurrentEmployee;
+    private int mSelectedRow;
     
     private boolean mEditing = false;
     
@@ -93,6 +94,15 @@ public class InterfaceIO {
         String workLoc = mAddForm.getFieldWorkLocation();
         String deductRateField = mAddForm.getFieldDeductRate();
         String type = mAddForm.getFieldEmploymentType();
+   
+        if (firstName.contains(","))
+            firstName = firstName.replace(",", "");
+        if (lastName.contains(","))
+            lastName = lastName.replace(",", "");
+        if (sex.contains(","))
+            sex = sex.replace(",", "");
+        if (workLoc.contains(","))
+            workLoc = workLoc.replace(",", "");
         
         String incomeField = mAddForm.getFieldIncome();
         String hoursPerWeekField = mAddForm.getFieldHoursPerWeek();
@@ -136,12 +146,12 @@ public class InterfaceIO {
         if (mEditing) {
             if (type.equals("FT")) {
 
-                success = mManager.editEmployee(empNum, firstName, lastName, sex, workLoc, deductRate, income);
+                success = mManager.editEmployee(mCurrentEmployee.getEmpNum(), empNum, firstName, lastName, sex, workLoc, deductRate, income);
 
             }
             else { 
 
-                success = mManager.editEmployee(empNum, firstName, lastName, sex, workLoc, deductRate, income, hoursPerWeek, weeksPerYear);
+                success = mManager.editEmployee(mCurrentEmployee.getEmpNum(), empNum, firstName, lastName, sex, workLoc, deductRate, income, hoursPerWeek, weeksPerYear);
 
             }
             if (!success) {
@@ -180,20 +190,19 @@ public class InterfaceIO {
         
     }
     
-    public void reloadView() {
-        
-        if (JOptionPane.showConfirmDialog(mMainView, 
-            "Close current window and open new window?", "Create new?", 
-            JOptionPane.YES_NO_OPTION,
-            JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
-            
-            mMainView.dispose();
-            
-            loadView();
-        }
-        
-        
-    }
+//    public void reloadView() {
+//        
+//        if (JOptionPane.showConfirmDialog(mMainView, 
+//            "Close current window and open new window?", "Create new?", 
+//            JOptionPane.YES_NO_OPTION,
+//            JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+//            
+//            mMainView.dispose();
+//            
+//            loadView();
+//        }
+//        
+//    }
 
     public void loadView() {
         mMainView = new MainView();
@@ -217,12 +226,16 @@ public class InterfaceIO {
             public void valueChanged(ListSelectionEvent event) {
                 // Selected element in database table
                 int selectedRow = mMainView.getTableDatabase().getSelectedRow();
-                if (selectedRow < 0)
+                if (selectedRow < 0) {
                     return;
-                int empNum = (int) mMainView.getTableDatabase().getValueAt(selectedRow, 0);
+                }
+                mSelectedRow = selectedRow;
+                int empNum = (int) mMainView.getTableDatabase().getValueAt(mSelectedRow, 0);
                 populateEmployeeInfo(mManager.searchEmployee(empNum));
             }
         });
+        
+        mManager.readDatabaseFromFile();
         
     }
     
@@ -294,12 +307,22 @@ public class InterfaceIO {
     
     public void removeCurrentEmployee() {
         
+        if (mCurrentEmployee == null)
+            return;
+        
         mManager.removeEmployee(mCurrentEmployee);
         
-        populateEmployeeInfo(new EmployeeInfo(-1, "", "", "", "", -1.0));
+        populateEmployeeInfo(new PartTimeEmployee(-1, "", "", "", "", 0.0, 0.0, 0.0, 0.0));
         mCurrentEmployee = null;
         
-        mManager.loadDatabase();
+        reloadTable();
+        
+        if (mSelectedRow >= mMainView.getTableDatabase().getRowCount()) {
+            mSelectedRow = mMainView.getTableDatabase().getRowCount() - 1;
+        }
+        if (mSelectedRow >= 0) {
+            mMainView.selectRow(mSelectedRow);
+        }
         
     }
     
@@ -345,18 +368,20 @@ public class InterfaceIO {
     public void searchEmployees(String term, String type) {
         
         if (type.equals("Show All"))
-            mManager.loadDatabase();
+            mManager.reloadFullDatabase();
         else
             mManager.searchDatabase(term, type);
         
     }
     
-    public void saveDatabase() {
-        mManager.saveDatabaseToFile();
+    public void reloadTable() {
+        
+        mMainView.searchDatabase();
+        
     }
     
-    public void openDatabase() {
-        mManager.readDatabaseFromFile();
+    public void saveDatabase() {
+        mManager.saveDatabaseToFile();
     }
     
     

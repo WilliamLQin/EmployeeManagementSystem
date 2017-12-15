@@ -149,20 +149,22 @@ public class HashTableEmployeeInfo {
         
     }
     
-    public boolean editEmployee(EmployeeInfo emp) {
+    public boolean editEmployee(int employeeNum, EmployeeInfo emp) {
         
         // Set the reference to the employee from the hash table
         // with the same employee number to the new employee.
         // If the employee is not in the hash table, return false.
         
-        int key = emp.getEmpNum();
+        int key = employeeNum;
         
         ArrayList<EmployeeInfo> bucket = buckets[calcBucket(key)];
         
-        int index = findEmployeeIndex(emp.getEmpNum());
+        int index = findEmployeeIndex(employeeNum);
         
         if (index != -1) {
-            bucket.set(index, emp);
+            bucket.remove(index);
+            
+            addEmployee(emp);
             return true;
         }
         return false;
