@@ -36,6 +36,7 @@ public class MainView extends javax.swing.JFrame {
         labelTitle = new javax.swing.JLabel();
         buttonAdd = new javax.swing.JButton();
         buttonSave = new javax.swing.JButton();
+        buttonOpen = new javax.swing.JButton();
         panelViewEmp = new javax.swing.JPanel();
         labelViewTitle = new javax.swing.JLabel();
         panelEmp = new javax.swing.JPanel();
@@ -98,6 +99,13 @@ public class MainView extends javax.swing.JFrame {
             }
         });
 
+        buttonOpen.setText("Open");
+        buttonOpen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonOpenActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelMainLayout = new javax.swing.GroupLayout(panelMain);
         panelMain.setLayout(panelMainLayout);
         panelMainLayout.setHorizontalGroup(
@@ -105,6 +113,8 @@ public class MainView extends javax.swing.JFrame {
             .addGroup(panelMainLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(labelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonOpen, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -122,7 +132,9 @@ public class MainView extends javax.swing.JFrame {
                     .addGroup(panelMainLayout.createSequentialGroup()
                         .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(buttonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(buttonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(buttonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(buttonOpen, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
 
@@ -303,14 +315,13 @@ public class MainView extends javax.swing.JFrame {
                                         .addGap(42, 42, 42)))
                                 .addGroup(panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEmpLayout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
                                         .addGroup(panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(labelVarNetIncome, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(panelEmpLayout.createSequentialGroup()
-                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                .addGroup(panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                    .addComponent(labelVarDeduction, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(labelVarGrossIncome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(labelVarWeeksPerYear, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                            .addGroup(panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(labelVarDeduction, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(labelVarGrossIncome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(labelVarWeeksPerYear, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                         .addGap(65, 65, 65))
                                     .addGroup(panelEmpLayout.createSequentialGroup()
                                         .addGroup(panelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -587,6 +598,12 @@ public class MainView extends javax.swing.JFrame {
         InterfaceIO.getInstance().saveDatabase();
     }//GEN-LAST:event_buttonSaveActionPerformed
 
+    private void buttonOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOpenActionPerformed
+        // TODO add your handling code here:
+        
+        InterfaceIO.getInstance().openDatabase();
+    }//GEN-LAST:event_buttonOpenActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -710,6 +727,7 @@ public class MainView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAdd;
     private javax.swing.JButton buttonEdit;
+    private javax.swing.JButton buttonOpen;
     private javax.swing.JButton buttonRemove;
     private javax.swing.JButton buttonSave;
     private javax.swing.JButton buttonSearch;

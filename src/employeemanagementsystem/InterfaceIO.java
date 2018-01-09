@@ -235,7 +235,7 @@ public class InterfaceIO {
             }
         });
         
-        mManager.readDatabaseFromFile();
+//        mManager.readDatabaseFromFile();
         
     }
     
@@ -382,6 +382,10 @@ public class InterfaceIO {
     
     public void saveDatabase() {
         mManager.saveDatabaseToFile();
+    }
+    
+    public void openDatabase() {
+        mManager.readDatabaseFromFile();
     }
     
     

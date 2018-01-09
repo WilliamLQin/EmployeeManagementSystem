@@ -5,7 +5,7 @@
             <url>src/employeemanagementsystem/MainView.java</url>
             <bookmark id="1">
                 <name/>
-                <line>578</line>
+                <line>636</line>
                 <key/>
             </bookmark>
         </file>
@@ -15,8 +15,11 @@
             <file>file:/Users/williamqin/Work/Programming/NetBeansProjects/EmployeeManagementSystem/src/employeemanagementsystem/InterfaceIO.java</file>
             <file>file:/Users/williamqin/Work/Programming/NetBeansProjects/EmployeeManagementSystem/src/employeemanagementsystem/employee/HashTableEmployeeInfo.java</file>
             <file>file:/Users/williamqin/Work/Programming/NetBeansProjects/EmployeeManagementSystem/src/employeemanagementsystem/EmployeeManagementSystem.java</file>
+            <file>file:/Users/williamqin/Work/Programming/NetBeansProjects/EmployeeManagementSystem/src/employeemanagementsystem/employee/PartTimeEmployee.java</file>
+            <file>file:/Users/williamqin/Work/Programming/NetBeansProjects/EmployeeManagementSystem/src/employeemanagementsystem/employee/FullTimeEmployee.java</file>
             <file>file:/Users/williamqin/Work/Programming/NetBeansProjects/EmployeeManagementSystem/src/employeemanagementsystem/AddEmployeeForm.java</file>
             <file>file:/Users/williamqin/Work/Programming/NetBeansProjects/EmployeeManagementSystem/src/employeemanagementsystem/MainView.java</file>
+            <file>file:/Users/williamqin/Work/Programming/NetBeansProjects/EmployeeManagementSystem/src/employeemanagementsystem/employee/EmployeeInfo.java</file>
         </group>
     </open-files>
 </project-private>
