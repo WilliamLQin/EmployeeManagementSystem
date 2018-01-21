@@ -231,7 +231,7 @@ public class InterfaceIO {
                 }
                 mSelectedRow = selectedRow;
                 int empNum = (int) mMainView.getTableDatabase().getValueAt(mSelectedRow, 0);
-                populateEmployeeInfo(mManager.searchEmployee(empNum));
+                populateEmployeeInfo(mManager.searchEmployee(empNum), true);
             }
         });
         
@@ -261,11 +261,11 @@ public class InterfaceIO {
         
     }
     
-    public void populateEmployeeInfo(EmployeeInfo employee) {
+    public void populateEmployeeInfo(EmployeeInfo employee, boolean isEmployee) {
         
         mCurrentEmployee = employee;
         
-        mMainView.setVarEmpNum(employee.getEmpNum());
+        mMainView.setVarEmpNum(employee.getEmpNum(), isEmployee);
         mMainView.setVarFirstName(employee.getFirstName());
         mMainView.setVarLastName(employee.getLastName());
         mMainView.setVarSex(employee.getSex());
@@ -312,7 +312,7 @@ public class InterfaceIO {
         
         mManager.removeEmployee(mCurrentEmployee);
         
-        populateEmployeeInfo(new PartTimeEmployee(-1, "", "", "", "", 0.0, 0.0, 0.0, 0.0));
+        resetEmployeeInfo();
         mCurrentEmployee = null;
         
         reloadTable();
@@ -380,12 +380,19 @@ public class InterfaceIO {
         
     }
     
+    public void resetEmployeeInfo() {
+        populateEmployeeInfo(new PartTimeEmployee(-1, "", "", "", "", 0.0, 0.0, 0.0, 0.0), false);
+        mCurrentEmployee = null;
+    }
+    
     public void saveDatabase() {
         mManager.saveDatabaseToFile();
+        resetEmployeeInfo();
     }
     
     public void openDatabase() {
         mManager.readDatabaseFromFile();
+        resetEmployeeInfo();
     }
     
     

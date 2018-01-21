@@ -76,7 +76,7 @@ public class EmployeeManagementSystem {
         boolean success = mDatabase.addEmployee(emp);
         if (success) {
             InterfaceIO.getInstance().populateTable(emp);
-            InterfaceIO.getInstance().populateEmployeeInfo(emp);
+            InterfaceIO.getInstance().populateEmployeeInfo(emp, true);
         }
         return success;
         
@@ -99,7 +99,7 @@ public class EmployeeManagementSystem {
         boolean success = mDatabase.editEmployee(prevEmpNum, emp);
         if (success) {
             InterfaceIO.getInstance().reloadTable();
-            InterfaceIO.getInstance().populateEmployeeInfo(emp);
+            InterfaceIO.getInstance().populateEmployeeInfo(emp, true);
         }
         return success;
         

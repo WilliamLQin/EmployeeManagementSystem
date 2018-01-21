@@ -671,8 +671,8 @@ public class MainView extends javax.swing.JFrame {
         return tableDatabase;
     }
     
-    public void setVarEmpNum(int empNum) {
-        if (empNum == -1)
+    public void setVarEmpNum(int empNum, boolean isEmployee) {
+        if (!isEmployee)
             labelVarEmpNum.setText("Select an employee...");
         else
             labelVarEmpNum.setText(String.valueOf(empNum));
