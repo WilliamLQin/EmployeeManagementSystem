@@ -225,16 +225,16 @@ public class HashTableEmployeeInfo {
                         match = emp.getEmpNum() == num;
                         break;
                     case "First Name":
-                        match = emp.getFirstName().equals(term);
+                        match = emp.getFirstName().contains(term);
                         break;
                     case "Last Name":
-                        match = emp.getLastName().equals(term);
+                        match = emp.getLastName().contains(term);
                         break;
                     case "Sex":
-                        match = emp.getSex().equals(term);
+                        match = emp.getSex().contains(term);
                         break;
                     case "Work Location":
-                        match = emp.getWorkLoc().equals(term);
+                        match = emp.getWorkLoc().contains(term);
                         break;
                     case "Part Time":
                         match = emp instanceof PartTimeEmployee;
