@@ -60,12 +60,12 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                  <Component id="labelTitle" min="-2" pref="274" max="-2" attributes="0"/>
+                  <Component id="labelTitle" min="-2" pref="401" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="buttonOpen" min="-2" pref="86" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="buttonSave" min="-2" pref="86" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="158" max="32767" attributes="0"/>
                   <Component id="buttonAdd" min="-2" pref="260" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -101,7 +101,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Lucida Grande" size="24" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Employee Database"/>
+            <Property name="text" type="java.lang.String" value="Employee Management System"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
         </Component>
